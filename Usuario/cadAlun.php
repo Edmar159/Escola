@@ -30,6 +30,7 @@
 					    <label class="col-md-3 control-label">*Login</label>
 						<div class="col-md-9">
 						   	<input type="text" class="form-control" name="login" placeholder="Nickname">
+						   	<input type="hidden" name="tipo" value="aluno">
 						</div>
 					</div>
 					<div class="form-group">
@@ -50,52 +51,7 @@
 						   	<input type="text" class="form-control" name="nome" placeholder="Jane Doe">
 						</div>
 					</div>
-					<div class="form-group">
-					    <label class="col-md-3	 control-label">*Pais</label>
-						<div class="col-md-9">
-						   	<input type="text" class="form-control" name="pais" placeholder="Brasil">
-						</div>
-					</div>
-					<div class="form-group">
-					    <label class="col-md-3	 control-label">*Cidade</label>
-						<div class="col-md-9">
-						   	<input type="text" class="form-control" name="cidade" placeholder="Itajubá">
-						</div>
-					</div>
-					<div class="form-group">
-					    <label class="col-md-3	 control-label">*Estado</label>
-						<div class="col-md-9">
-							<select class="form-control" name="estado">
-									<option value="ac">Acre</option> 
-									<option value="al">Alagoas</option> 
-									<option value="am">Amazonas</option> 
-									<option value="ap">Amapá</option> 
-									<option value="ba">Bahia</option> 
-									<option value="ce">Ceará</option> 
-									<option value="df">Distrito Federal</option> 
-									<option value="es">Espírito Santo</option> 
-									<option value="go">Goiás</option> 
-									<option value="ma">Maranhão</option> 
-									<option value="mt">Mato Grosso</option> 
-									<option value="ms">Mato Grosso do Sul</option> 
-									<option value="mg">Minas Gerais</option> 
-									<option value="pa">Pará</option> 
-									<option value="pb">Paraíba</option> 
-									<option value="pr">Paraná</option> 
-									<option value="pe">Pernambuco</option> 
-									<option value="pi">Piauí</option> 
-									<option value="rj">Rio de Janeiro</option> 
-									<option value="rn">Rio Grande do Norte</option> 
-									<option value="ro">Rondônia</option> 
-									<option value="rs">Rio Grande do Sul</option> 
-									<option value="rr">Roraima</option> 
-									<option value="sc">Santa Catarina</option> 
-									<option value="se">Sergipe</option> 
-									<option value="sp">São Paulo</option> 
-									<option value="to">Tocantins</option> 
-							</select>
-						</div>
-					</div>
+					
 					<div class="form-group">
 					    <label class="col-md-3	 control-label">*Endereço</label>
 						<div class="col-md-9">
@@ -103,16 +59,15 @@
 						</div>
 					</div>
 					<div class="form-group">
-					    <label class="col-md-3	 control-label">*Formação</label>
+					    <label class="col-md-3	 control-label">*Curso</label>
 						<div class="col-md-9">
-						   	<input type="text" class="form-control" name="formacao" placeholder="Pedagogia">
+						   	<input type="text" class="form-control" name="formacao" placeholder="Ciência da Computação">
 						</div>
 					</div>
 					<div class="form-group">
-					    <label class="col-md-3	 control-label">*Salário</label>
+					    <label class="col-md-3	 control-label">*Data de nascimento</label>
 						<div class="col-md-9">
-							<input type="hidden" name="tipo" value="professor">
-						   	<input type="number" step=0.01 class="form-control" name="salario" placeholder="00.00">
+						   	<input type="date" class="form-control" name="dataNascimento">
 						</div>
 					</div>
 					<div class="form-group">
