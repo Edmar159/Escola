@@ -20,9 +20,9 @@
 </div>
 
 <?php 
-$cpf = $_SESSION["cpf"];
-
-$result = mysqli_query($con, "SELECT * FROM usuario WHERE cpf = '$cpf'");
+$cod = $_SESSION["cod"];
+if( $_SESSION["tipo"] == "professor"){
+		$result = mysqli_query($con, "SELECT * FROM professor WHERE codProfessor = '$cod'");
 
  
 
@@ -49,12 +49,13 @@ $result = mysqli_query($con, "SELECT * FROM usuario WHERE cpf = '$cpf'");
 							<div class="form-group">
 								<label class="col-md-3 control-label">Login</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control" name="login" placeholder=<?php echo $usuario->login ?>>
+									<label><?php echo $usuario->log_professor ?></label>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label">Senha</label>
 								<div class="col-md-8">
+									<input type="hidden" value="professor" name="tipo">
 									<input type="password" class="form-control" name="senha" placeholder="Senha">
 								</div>
 							</div>
@@ -71,59 +72,17 @@ $result = mysqli_query($con, "SELECT * FROM usuario WHERE cpf = '$cpf'");
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label">Cidade</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" name="cidade" placeholder=<?php echo $usuario->cidade ?>>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-md-3 control-label">Estado</label>
-								<div class="col-md-8">
-									<select class="form-control" name="estado">
-										<option value=<?php echo $usuario->estado ?>><?php echo $usuario->estado ?></option> 
-										<option value="ac">Acre</option> 
-										<option value="al">Alagoas</option> 
-										<option value="am">Amazonas</option> 
-										<option value="ap">Amapá</option> 
-										<option value="ba">Bahia</option> 
-										<option value="ce">Ceará</option> 
-										<option value="df">Distrito Federal</option> 
-										<option value="es">Espírito Santo</option> 
-										<option value="go">Goiás</option> 
-										<option value="ma">Maranhão</option> 
-										<option value="mt">Mato Grosso</option> 
-										<option value="ms">Mato Grosso do Sul</option> 
-										<option value="mg">Minas Gerais</option> 
-										<option value="pa">Pará</option> 
-										<option value="pb">Paraíba</option> 
-										<option value="pr">Paraná</option> 
-										<option value="pe">Pernambuco</option> 
-										<option value="pi">Piauí</option> 
-										<option value="rj">Rio de Janeiro</option> 
-										<option value="rn">Rio Grande do Norte</option> 
-										<option value="ro">Rondônia</option> 
-										<option value="rs">Rio Grande do Sul</option> 
-										<option value="rr">Roraima</option> 
-										<option value="sc">Santa Catarina</option> 
-										<option value="se">Sergipe</option> 
-										<option value="sp">São Paulo</option> 
-										<option value="to">Tocantins</option> 
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">País</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" name="pais" placeholder=<?php echo $usuario->pais ?>>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">E-mail</label>
-								<div class="col-md-8">
-									<input type="email" class="form-control" name="email" placeholder=<?php echo $usuario->email ?>>
-								</div>
-							</div>
+					    <label class="col-md-3	 control-label">*Formação</label>
+						<div class="col-md-9">
+						   	<label><?php echo $usuario->formacao ?></label>
+						</div>
+					</div>
+					<div class="form-group">
+					    <label class="col-md-3	 control-label">*Salário</label>
+						<div class="col-md-9">
+						   	<label><?php echo $usuario->salario ?></label>
+						</div>
+					</div>
 					</div>
 				</div>
 				<div class="panel panel-primary">
@@ -154,6 +113,7 @@ $result = mysqli_query($con, "SELECT * FROM usuario WHERE cpf = '$cpf'");
 		}
 		
 	}
+}
 	?>
 
 <?php include_once("../footer.php") ?>

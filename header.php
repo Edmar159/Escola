@@ -33,10 +33,11 @@
 					?>
 						<li>
 							<li class="dropdown">
-					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastro <span class="caret"></span></a>
+					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuário <span class="caret"></span></a>
 					         	<ul class="dropdown-menu">
-					            <li><a href="../Usuario/cadProf.php">Professor</a></li>
-					            <li><a href="../Usuario/cadAlun.php">Aluno</a></li>
+					            <li><a href="../Usuario/cadProf.php">Cadastro Professor</a></li>
+					            <li><a href="../Usuario/cadAlun.php">Cadastro Aluno</a></li>
+					            <li><a href="../Usuario/buscaUsuario.php">Busca usuário</a></li>
 					     
 					          </ul>
 					        </li>

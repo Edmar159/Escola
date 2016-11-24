@@ -4,54 +4,67 @@
 	
 	session_start();
 
-	$cpf = $_SESSION["cpf"];
-	$login  = $_POST['login'];
+	$cod = $_SESSION["cod"];
 	$senha  = $_POST['senha'];
 	$r_senha  = $_POST['repetirSenha'];
-	$pais     = $_POST['pais'];
-	$cidade = $_POST['cidade'];
-	$estado     = $_POST['estado'];
 	$endereco = $_POST['endereco'];
-	$email = $_POST['email'];
-	$sen = $_POST['senha_atual'];
+	if(isset($_POST['salario']))
+		$salario = $_POST['salario'];
+	$tipo = $_POST['tipo'];
 	
-	$result = mysqli_query($con, "SELECT * FROM usuario WHERE cpf = '$cpf'");
-	$usuario = mysqli_fetch_object($result);
-
-
-	if( $usuario->senha == $sen){
-		if($login != NULL){
-			$result = mysqli_query($con, "UPDATE usuario set login='$login' where cpf='$cpf'");
-		}	
-		if($senha != NULL){
-			if($senha == $r_senha){
-			$result = mysqli_query($con, "UPDATE usuario set senha='$senha' where cpf='$cpf'");
-			
-			}else{
-				header("Location: alterarUsuario.php?error=Senhas não conferem!");		
+	//$formacao = $_POST['formacao'];
+	if(isset($_POST['dataNascimento']))
+		$dataNascimento = $_POST['dataNascimento'];
+	$sen = $_POST['senha_atual'];
+	if($tipo == "professor"){
+		$result = mysqli_query($con, "SELECT * FROM professor WHERE codProfessor = '$cod'");
+	}elseif ($tipo=="aluno") {
+		$result = mysqli_query($con, "SELECT * FROM aluno WHERE codAluno = '$cod'");
+	}
+	if($usuario = mysqli_fetch_object($result))
+	{	
+		if( $usuario->senha == $sen){
+			if($tipo == "professor"){
+				//checa senhas e salva no bd
+				if($senha != NULL){
+					if($senha == $r_senha){
+						$result = mysqli_query($con, "UPDATE professor set senha='$senha' where codProfessor='$cod'");
+					
+					}else{
+						header("Location: altProf.php?error=Senhas não conferem!");		
+						exit();
+					}
+				}
+				if($endereco != NULL){
+					$result = mysqli_query($con, "UPDATE professor set endereco='$endereco' where codProfessor='$cod'");					
+				}
+				header("Location: altProf.php?sucess=Dados alterados com sucesso!");
+				exit();				
+			}elseif($tipo == "aluno"){
+				//checa senhas e salva no bd
+				if($senha != NULL){
+					if($senha == $r_senha){
+						$result = mysqli_query($con, "UPDATE aluno set senha='$senha' where codAluno='$cod'");
+					
+					}else{
+						header("Location: altAlun.php?error=Senhas não conferem!");		
+						exit();
+					}
+				}
+				if($endereco != NULL){
+					$result = mysqli_query($con, "UPDATE aluno set endereco='$endereco' where codAluno='$cod'");					
+				}
+				header("Location: altAlun.php?sucess=Dados alterados com sucesso!");
 				exit();
 			}
-		}	
-		if($pais != NULL){
-			$result = mysqli_query($con, "UPDATE usuario set pais='$pais' where cpf='$cpf'");
-		}	
-		if($cidade != NULL){
-			$result = mysqli_query($con, "UPDATE usuario set cidade='$cidade' where cpf='$cpf'");
-		}	
-		if($estado != NULL){
-			$result = mysqli_query($con, "UPDATE usuario set estado='$estado' where cpf='$cpf'");
+		} else {
+			if($tipo == "professor"){
+				header("Location: altProf.php?error=Autenticação incorreta!");
+				exit();	
+			}elseif($tipo == "aluno"){
+				header("Location: altAlun.php?error=Autenticação incorreta!");
+				exit();
+			}
 		}
-		if($endereco != NULL){
-			$result = mysqli_query($con, "UPDATE usuario set endereco='$endereco' where cpf='$cpf'");
-		}	
-		if($email != NULL){
-			$result = mysqli_query($con, "UPDATE usuario set email='$email' where cpf='$cpf'");
-		}	
-		
-		header("Location: alterarUsuario.php?success=Dados alterados com sucesso!");
-		
-	} else {
-		header("Location: alterarUsuario.php?error=Autenticação incorreta!");	
 	}
-
 ?>

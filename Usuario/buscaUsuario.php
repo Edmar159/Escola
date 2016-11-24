@@ -7,12 +7,22 @@ if(isset($_GET['busca']))
 {	
 	$busca = $_GET['busca'];
 	if ($busca == NULL){
-					$result = mysqli_query($con, "SELECT * FROM usuario");	
+		
 	}
-	elseif(isset($_GET['busca'])){
-		$result = mysqli_query($con, "SELECT * FROM usuario WHERE login like '%$busca%' or nome like '%$busca%'");	
+	else{
+		$result = mysqli_query($con, "SELECT * FROM aluno WHERE log_aluno like '%$busca%' or nome like '%$busca%'");
+		if(isset($result)){
+			if(mysqli_num_rows($result) > 0){
+			$tipo = "aluno";
+			}else{
+				$result = mysqli_query($con, "SELECT * FROM professor WHERE log_professor like '%$busca%' or nome like '%$busca%'");
+					if(isset($result)){
+						$tipo = "professor";
+					}
+				}
+			}
+		}
 	}
-}
 
 ?>
 <div class="row">
@@ -42,52 +52,124 @@ if(isset($_GET['busca']))
 		</div>
 	</div>
 </div>
-<div class="row ">
-	<div class="col-md-12 col-md-offset-0">
-			<?php 
-			
-			if(isset($result))
-			{		
-				if(mysqli_num_rows($result) > 0)
-				{
+<?php 
+if($tipo == "aluno"){ ?>
+	<div class="row ">
+		<div class="col-md-12 col-md-offset-0">
+				<?php 
 				
-					?>
-					
-					<div class="panel panel-primary">
-		  			<div class="panel-heading">Resultado</div>
-					<table class="table table-striped">
-							<tr>
-								<td><b>Login</b></td>
-								<td><b>Nome</b></td>
-								<td></td>
-							</tr>
-					<?php
-					while($usuario = mysqli_fetch_object($result))
-					{
-						?>
-						<tr>
-							<td><span class="detalhes"><a href="dadosUsuario.php?cpf=<?php echo $usuario->cpf; ?>"><?php echo $usuario->login ?></a></span><br></td>
-							<td><span class="detalhes"><a href="dadosUsuario.php?cpf=<?php echo $usuario->cpf; ?>"><?php echo $usuario->nome ?></a></span><br>
-							</td>
-							<td>
-								<a class="btn btn-default btn-xs" href="dadosUsuario.php?cpf=<?php echo $usuario->cpf; ?>" role="button"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Mais</a>
-							</td>
-						</tr>
-						
-						<?php
-					}
-					?></table> <?php	
-				}else
+				if(isset($result))
 				{		
-				?>		
-					<p class="bg-info"><b> Nenhum usuario encontrado</b></p>				
-				<?php
+					if(mysqli_num_rows($result) > 0)
+					{
+					
+						?>
+						
+						<div class="panel panel-primary">
+			  			<div class="panel-heading">Alunos</div>
+						<table class="table table-striped">
+								<tr>
+									<td><b>Login</b></td>
+									<td><b>Nome</b></td>
+									<td><b>Endereço</b></td>
+									<td><b>Curso</b></td>
+									<td><b>Data de nascimento</b></td>
+									<td></td>
+								</tr>
+						<?php
+						while($usuario = mysqli_fetch_object($result))
+						{
+							?>
+							<tr>
+								<td><span class="detalhes"><?php echo $usuario->log_aluno ?></a></span><br></td>
+								<td><span class="detalhes"><?php echo $usuario->nome ?></a></span><br>
+								</td>
+								<td><span class="detalhes"><?php echo $usuario->endereco ?></a></span><br>
+								</td>
+								<td><span class="detalhes"><?php echo $usuario->curso ?></a></span><br>
+								</td>
+								<td><span class="detalhes"><?php echo $usuario->dataNasc ?></a></span><br>
+								</td>
+								<td>
+							<!--		<a class="btn btn-default btn-xs"  href="dadosUsuario.php?cpf=<?php// echo $usuario->cpf; ?>" <!-- role="button" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Apagar</a>
+								</td>
+								-->
+							</tr>
+							
+							<?php
+						}
+						?></table> <?php	
+					}else
+					{		
+					?>		
+						<p class="bg-info"><b> Nenhum usuario encontrado</b></p>				
+					<?php
+					}
 				}
-			}
-			?>
+				?>
+			</div>
 		</div>
 	</div>
-</div>
+<?php } ?>
+<?php 
+if($tipo == "professor"){ ?>
+	<div class="row ">
+		<div class="col-md-12 col-md-offset-0">
+				<?php 
+				
+				if(isset($result))
+				{		
+					if(mysqli_num_rows($result) > 0)
+					{
+					
+						?>
+						
+						<div class="panel panel-primary">
+			  			<div class="panel-heading">Professores</div>
+						<table class="table table-striped">
+								<tr>
+									<td><b>Login</b></td>
+									<td><b>Nome</b></td>
+									<td><b>Endereço</b></td>
+									<td><b>Formação</b></td>
+									<td><b>Salário</b></td>
+									<td></td>
+								</tr>
+						<?php
+						while($usuario = mysqli_fetch_object($result))
+						{
+							?>
+							<tr>
+								<td><span class="detalhes"><?php echo $usuario->log_professor ?></a></span><br></td>
+								<td><span class="detalhes"><?php echo $usuario->nome ?></a></span><br>
+								</td>
+								<td><span class="detalhes"><?php echo $usuario->endereco ?></a></span><br>
+								</td>
+								<td><span class="detalhes"><?php echo $usuario->formacao ?></a></span><br>
+								</td>
+								<td><span class="detalhes"><?php echo $usuario->salario ?></a></span><br>
+								</td>
+								<td>
+							<!--		<a class="btn btn-default btn-xs"  href="dadosUsuario.php?cpf=<?php// echo $usuario->cpf; ?>" <!-- role="button" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Apagar</a>
+								</td>
+								-->
+							</tr>
+							
+							<?php
+						}
+						?></table> <?php	
+					}else
+					{		
+					?>		
+						<p class="bg-info"><b> Nenhum usuario encontrado</b></p>				
+					<?php
+					}
+				}
+				?>
+			</div>
+		</div>
+	</div>
+<?php } ?>
 
 
 <?php include_once("../footer.php") ?>

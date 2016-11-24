@@ -14,26 +14,29 @@
 		$cod = $registro["codAluno"];
 		$nome = $registro["nome"];
 		$log = $registro["log_aluno"];
+		$tipo = "aluno";
 		session_start();
 		$_SESSION["cod"] = $cod;
 		$_SESSION["login"] = $log;
 		$_SESSION["nome"] = $nome;
-		$_SESSION["tipo"] = "aluno";
-			
+		$_SESSION["tipo"] = $tipo;
+		
 		header("Location: ../Home/index.php");
 		exit();
 	} 
     $result = mysqli_query($con, "SELECT * FROM professor WHERE log_professor = '$login' and senha = '$senha'");	
 	if($registro = mysqli_fetch_assoc($result))
 	{
+
 		$cod = $registro["codProfessor"];
 		$nome = $registro["nome"];
 		$log = $registro["log_professor"];
+		$tipo= "professor";
 		session_start();
 		$_SESSION["cod"] = $cod;
 		$_SESSION["login"] = $log;
 		$_SESSION["nome"] = $nome;
-		$_SESSION["tipo"] = "professor";
+		$_SESSION["tipo"] = $tipo;
 		
 		header("Location: ../Home/index.php");
 		exit();
