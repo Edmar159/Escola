@@ -37,64 +37,76 @@
 					         	<ul class="dropdown-menu">
 					            <li><a href="../Usuario/cadProf.php">Cadastro Professor</a></li>
 					            <li><a href="../Usuario/cadAlun.php">Cadastro Aluno</a></li>
-					            <li><a href="../Usuario/buscaUsuario.php">Busca usuário</a></li>
+					            <li><a href="../Usuario/buscaUsuario.php">Consulta Usuário</a></li>
+					     
+					          </ul>
+					        </li>
+						</li>
+						<li>
+							<li class="dropdown">
+					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Disciplina <span class="caret"></span></a>
+					         	<ul class="dropdown-menu">
+					            <li><a href="../Disciplina/cadDisc.php">Cadastro Disciplina</a></li>
+					            <li><a href="../Disciplina/buscaDisciplina.php">Consulta Disciplina</a></li>
+					     
+					          </ul>
+					        </li>
+						</li>
+						<li>
+							<li class="dropdown">
+					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Turma <span class="caret"></span></a>
+					         	<ul class="dropdown-menu">
+					            <li><a href="../Turma/cadTurma.php">Cadastro Turma</a></li>
+					            <li><a href="../Turma/buscaTurma.php">Consulta Turma</a></li>
+					            
+					     
+					          </ul>
+					        </li>
+						</li>
+						<li>
+							<li class="dropdown">
+					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Matrícula <span class="caret"></span></a>
+					         	<ul class="dropdown-menu">
+					            <li><a href="../Matricula/buscaMat.php">Consulta Matriculas</a></li>
 					     
 					          </ul>
 					        </li>
 						</li>
 					<?php 
 					} 
-					?>
-					<?php 
-					if( isset($_SESSION["login"]) ){ 
+
+					if( isset($_SESSION["login"]) && ($tipo == "professor") ){ 
 					?>
 						<li>
 							<li class="dropdown">
-					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projeto <span class="caret"></span></a>
+					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Disciplina <span class="caret"></span></a>
 					         	<ul class="dropdown-menu">
-					         	<?php if( $_SESSION["tipo"] == "gestor" ){ ?>
-					         	<li><a href="../Projeto/cadastroProjeto.php">Cadastrar</a></li>
-					         	<?php } ?>
-					            <li><a href="../Projeto/busProjCan.php">Consultar</a></li>
-					            <?php if( $_SESSION["tipo"] == "gestor" ){ ?>
-					         	<li><a href="../Projeto/busProjFin.php">Finalizar</a></li>
-					         	<?php } ?>
+					            <li><a href="../Disciplina/buscaDisciplina.php">Consulta Disciplina</a></li>
+					            
+					     
 					          </ul>
 					        </li>
 						</li>
 					<?php 
 					} 
-					?>
-					<?php 
-					if( isset($_SESSION["login"])  ){ 
+					
+					if( isset($_SESSION["login"]) && ($tipo == "aluno") ){ 
 					?>
 						<li>
 							<li class="dropdown">
-					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Criterio Avaliação <span class="caret"></span></a>
+					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Matricula <span class="caret"></span></a>
 					         	<ul class="dropdown-menu">
-					         	<li><a href="../criterio/cadastroCriterio.php">Cadastrar</a></li>
-					            <li><a href="../criterio/buscarCriterio.php">Consultar</a></li>
+					            <li><a href="../Matricula/cadMat.php">Realizar Matricula</a></li>
+					            <li><a href="../Matricula/buscaMat.php">Matriculas Efetuadas</a></li>
+					            
+					     
 					          </ul>
 					        </li>
 						</li>
 					<?php 
-					} 
+					}   
 					?>
-					<?php 
-					if( isset($_SESSION["login"])){ 
-					?>
-						<li>
-							<li class="dropdown">
-					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatório <span class="caret"></span></a>
-					         	<ul class="dropdown-menu">
-					            <li><a href="../Relatorio/projetosCategoria.php">Projetos por Categoria</a></li>
-					            <li><a href="../Relatorio/buscarProjetoAprovado.php">Investimentos Financeiros</a></li>
-					          </ul>
-					        </li>
-						</li>
-					<?php 
-					} 
-					?>
+						
 				</ul>
 				<form class="navbar-form navbar-left" method="POST" action="../Projeto/busProjApr.php">
 			        <div class="form-group">

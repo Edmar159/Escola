@@ -49,6 +49,7 @@ if($tipo == "professor"){
 					?>
 					
 					<tr>
+						<td></td><td></td><td></td><td></td>
 						<td>
 							<p><a href="altProf.php"
 							 class="btn btn-default btn-sm" role="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a></p>
@@ -107,7 +108,8 @@ if($tipo == "professor"){
 					?>
 					
 					<tr>
-						<td class="col-md-1 col-md-offset-9">
+					<td></td><td></td><td></td><td></td>
+						<td>
 							<p><a href="altAlun.php"
 							 class="btn btn-default btn-sm" role="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a></p>
 						</td>
