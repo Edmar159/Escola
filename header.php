@@ -67,6 +67,7 @@
 							<li class="dropdown">
 					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Matrícula <span class="caret"></span></a>
 					         	<ul class="dropdown-menu">
+					            <li><a href="../Matricula/cadMat.php">Realizar Matriculas</a></li>
 					            <li><a href="../Matricula/buscaMat.php">Consulta Matriculas</a></li>
 					     
 					          </ul>
@@ -96,7 +97,6 @@
 							<li class="dropdown">
 					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Matricula <span class="caret"></span></a>
 					         	<ul class="dropdown-menu">
-					            <li><a href="../Matricula/cadMat.php">Realizar Matricula</a></li>
 					            <li><a href="../Matricula/buscaMat.php">Matriculas Efetuadas</a></li>
 					            
 					     

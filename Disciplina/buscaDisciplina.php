@@ -176,7 +176,7 @@ if($tipo == "professor"){
 									</td>
 									</td>
 									<td>
-								<a class="btn btn-default btn-xs"  href="altDisc.php?cod=<?php echo $usuario->codDisciplina; ?>"  role="button" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
+								<!--<a class="btn btn-default btn-xs"  href="altDisc.php?cod=<?php //echo $usuario->codDisciplina; ?>" <!--  role="button" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a> -->
 									</td>
 								
 								</tr>
@@ -196,7 +196,7 @@ if($tipo == "professor"){
 									</td>
 									</td>
 									<td>
-								<a class="btn btn-default btn-xs"  href="altDisc.php?cod=<?php echo $usuario->codDisciplina; ?>"  role="button" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
+								<!--<a class="btn btn-default btn-xs"  href="altDisc.php?cod=<?php // echo $usuario->codDisciplina; ?>" <!-- role="button" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a> -->
 									</td>
 								
 								</tr>

@@ -1,6 +1,17 @@
 <?php include_once("../header.php") ?>
 <?php include_once("../validar.php") ?>
 
+<?php 
+
+		if(isset($_GET['success']))
+		{
+			?> 
+				<p class="bg-success" style="color:green"><?php echo $_GET['success'] ?></p>
+			<?php
+		}
+		if(isset($_GET['cod']))
+			$codT = $_GET['cod'];
+	?>
 <?php
 
 if(isset($_GET['busca']))

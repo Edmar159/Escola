@@ -1,9 +1,9 @@
 <?php include_once("../conexao.php") ?>
 
 <?php 
-	session_start();
-	$cod = $_SESSION['cod'];
+	
 	$naodevia  = $_POST['turma']; // codigo da turma
+	$cod = $_POST['aluno']; // cod aluno
 
 	$result=mysqli_query($con,"SELECT * FROM matricula where codTurma='$naodevia' and codAluno = '$cod'");
 	if(isset($result)){
@@ -18,7 +18,7 @@
 		if($disc=mysqli_fetch_object($result1)){
 			$result2=mysqli_query($con, "SELECT * FROM turma where codDisciplina = '$disc->codDisciplina'");
 			while ($dis=mysqli_fetch_object($result2)) {
-				$result3=mysqli_query($con, "SELECT * FROM matricula where codTurma = '$dis->codTurma' ");
+				$result3=mysqli_query($con, "SELECT * FROM matricula where codTurma = '$dis->codTurma' and codAluno = '$cod' ");
 				if($turm=mysqli_fetch_object($result3)){
 					header("Location: cadMat.php?error=Já possui cadastro nesta disciplina!");
 					exit();

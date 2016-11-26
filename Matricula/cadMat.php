@@ -19,7 +19,7 @@
 
 
 $tipo = $_SESSION['tipo'];
-if($tipo == "aluno"){
+if($tipo == "funcionario"){
 	?>
 
 
@@ -49,6 +49,20 @@ if($tipo == "aluno"){
 						</div>
 					</div>
 					<div class="form-group">
+					    	<label class="col-md-3	 control-label">Aluno</label>
+							<div class="col-md-8">
+							<select class="form-control" name="aluno">
+									<?php
+								$result = mysqli_query($con, "SELECT * FROM aluno");
+							 	while($alun = mysqli_fetch_object($result)){
+							 		
+							 ?>
+									<option value="<?php echo $alun->codAluno?>"> <?php echo $alun->nome ?> </option>  
+								<?php } ?> 
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
 					    <div class="col-md-2 col-md-offset-10">
 					      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Cadastrar</button>
 					    </div>
@@ -60,5 +74,7 @@ if($tipo == "aluno"){
 			</div>
 		</div>
     </div>
+<?php }else{ ?>
+	<label class="col-md-3	 control-label">Você não tem permissão de acesso!</label>
 <?php } ?>
 <?php include_once("../footer.php") ?>
