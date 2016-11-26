@@ -106,7 +106,7 @@ if($tipo == "professor"){
 					}else
 					{		
 					?>		
-						<p class="bg-info"><b> Nenhuma disciplina encontrado</b></p>				
+						<p class="bg-info"><b> Você não possui nenhuma disciplina cadastrada!</b></p>				
 					<?php
 					}
 				}

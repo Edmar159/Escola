@@ -2,19 +2,17 @@
 
 <?php 
 	
-	$ava=$_POST['ava']; // cod avaliacao
-	$quest=$_POST['qst']; //cod questao
-	if(isset($_POST['enunciado']))
-		$enunciado = $_POST['enunciado'];
-	if(isset($_POST['respc']))
-		$respc = $_POST['respc'];
-	if(isset($_POST['resp2']))
-		$resp2 = $_POST['resp2'];
-	if(isset($_POST['resp3']))
-		$resp3 = $_POST['resp3'];
-	if(isset($_POST['resp4']))
-		$resp4 = $_POST['resp4'];
-	
+	$ava=$_GET['cod']; // cod avaliacao
+	$result = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAvaliacao='$ava'");
+	if($valida = mysqli_fetch_object($resul)){
+		header("Location: buscaAvaliacao.php?error=Avaliação ja foi realizada por alunos!");
+		exit();
+	}else{
+		mysqli_query($con, "DELETE from avaliacao where codAvaliacao='$ava'");
+		mysqli_query($con, "DELETE from prova where codAvaliacao='$ava'");
+		header("Location: buscaAvaliacao.php?success=Avaliação removida com sucesso!");
+		exit();
+	}
 	if(($enunciado == NULL) && ($respc == NULL) && ($resp2 == NULL) && ($resp3 == NULL) && ($resp4 == NULL) )
 	{
 		header("Location: altAval.php?cod=$ava");

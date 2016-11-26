@@ -86,7 +86,7 @@ if(isset($_GET['busca']))
 					}else
 					{		
 					?>		
-						<p class="bg-info"><b> Nenhuma disciplina encontrado</b></p>				
+						<p class="bg-info"><b> Nenhuma disciplina encontrada!</b></p>				
 					<?php
 					}
 				}
@@ -210,7 +210,7 @@ if($tipo == "professor"){
 					}else
 					{		
 					?>		
-						<p class="bg-info"><b> Nenhuma disciplina encontrado</b></p>				
+						<p class="bg-info"><b> Você não possui nenhuma disciplina cadastrada!</b></p>				
 					<?php
 					}
 				}

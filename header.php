@@ -88,6 +88,28 @@
 					          </ul>
 					        </li>
 						</li>
+						<li>
+							<li class="dropdown">
+					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Questão <span class="caret"></span></a>
+					         	<ul class="dropdown-menu">
+					            <li><a href="../Questao/cadQuestao.php">Cadastrar Questão</a></li>
+					            <li><a href="../Questao/buscaQuestao.php">Consular Questão</a></li>
+					            
+					     
+					          </ul>
+					        </li>
+						</li>
+						<li>
+							<li class="dropdown">
+					        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Avaliação <span class="caret"></span></a>
+					         	<ul class="dropdown-menu">
+					            <li><a href="../Avaliacao/cadAvaliacao.php">Cadastrar Avaliação</a></li>
+					            <li><a href="../Avaliacao/buscaAvaliacao.php">Consular Avaliação</a></li>
+					            
+					     
+					          </ul>
+					        </li>
+						</li>
 					<?php 
 					} 
 					
