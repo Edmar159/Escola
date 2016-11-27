@@ -12,6 +12,7 @@ if(isset($_GET['codA']))
 if($tipo == "professor"){
 
 $result = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAluno = '$codA'");		
+if($cond = mysqli_fetch_object($result)){
 	?>
 		<div class="row ">
 			<div class="col-md-12 col-md-offset-0">
@@ -84,6 +85,9 @@ $result = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAluno = '$c
 						<?php	
 						}
 					}
+				}else{
+					echo("Aluno não realizou nenhuma avaliação até o momento!");
+				}
 		
 	}elseif ($tipo=="aluno") { 
 	
@@ -91,6 +95,7 @@ $result = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAluno = '$c
 		 
 	if($tipo == "aluno"){
 	$result = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAluno = '$cod'");		
+	if($cond = mysqli_fetch_object($result))
 	?>
 		<div class="row ">
 			<div class="col-md-12 col-md-offset-0">
@@ -164,42 +169,39 @@ $result = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAluno = '$c
 					}
 					?>
 					<div class="panel panel-primary">
-				  			<div class="panel-heading">Avaliações Pendentes</div>
-							<table class="table table-striped">
-								<tr>
-									<td><b>Disciplina</b></td>
-									<td><b>Professor</b></td>
-									<td></td>
-								</tr>
-								<?php
-					$result = mysqli_query($con, "SELECT * FROM turma where codTurma = '$codT'");
-					$turma = mysqli_fetch_object($result);
-					$result = mysqli_query($con, "SELECT curso FROM disciplina where codDisciplina = '$turma->codDisciplina'");
-					$disc = mysqli_fetch_object($result);
-					$result = mysqli_query($con, "SELECT nome FROM professor where codProfessor = '$turma->codDisciplina'");
-					$prof = mysqli_fetch_object($result);
-					$result = mysqli_query($con, "SELECT * FROM avaliacao where codTurma = '$turma->codTurma'");
-					while($aval = mysqli_fetch_object($result)){
-						$resul = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAvaliacao = '$aval->codAvaliacao' and codAluno = '$cod'");
-						if($ava_aluno = mysqli_fetch_object($resul)){
+			  			<div class="panel-heading">Avaliações Pendentes</div>
+						<table class="table table-striped">
+							<tr>
+								<td><b>Disciplina</b></td>
+								<td><b>Professor</b></td>
+								<td></td>
+							</tr>
+							<?php
+							$result = mysqli_query($con, "SELECT * FROM turma where codTurma = '$codT'");
+							$turma = mysqli_fetch_object($result);
+							$result = mysqli_query($con, "SELECT curso FROM disciplina where codDisciplina = '$turma->codDisciplina'");
+							$disc = mysqli_fetch_object($result);
+							$result = mysqli_query($con, "SELECT nome FROM professor where codProfessor = '$turma->codProfessor'");
+							$prof = mysqli_fetch_object($result);
+							$result = mysqli_query($con, "SELECT * FROM avaliacao where codTurma = '$turma->codTurma'");
+							while($aval = mysqli_fetch_object($result)){
+								$resul = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAvaliacao = '$aval->codAvaliacao' and codAluno = '$cod'");
+								if($ava_aluno = mysqli_fetch_object($resul)){
 
-						}else{ ?>
-							
-								<tr>
-									<td><a href="../Prova/Prova.php?codA=<?php echo $aval->codAvaliacao ?>"><span class="detalhes"><?php echo $disc->curso ?></a></span><br></td>
-									<td><a href="../Prova/Prova.php?codA=<?php echo $aval->codAvaliacao ?>"><span class="detalhes"><?php echo $prof->nome ?></a></span><br></td>
-									</td>
-								</tr>	
-							
-					<?php
-						}	
-					}
-					?>
-					</table>
-						</div>
-				</div>
-			</div>
-		</div>
+								}else{ ?>
+									
+										<tr>
+											<td><a href="../Prova/Prova.php?codA=<?php echo $aval->codAvaliacao ?>"><span class="detalhes"><?php echo $disc->curso ?></a></span><br></td>
+											<td><a href="../Prova/Prova.php?codA=<?php echo $aval->codAvaliacao ?>"><span class="detalhes"><?php echo $prof->nome ?></a></span><br></td>
+											</td>
+										</tr>	
+									
+							<?php
+								}	
+							}
+							?>
+						</table>
+					</div>
 <?php } ?>
 
 	</div>	

@@ -78,14 +78,14 @@ if($tipo == "professor"){
 								}
 							}
 						
-						?></table> <?php	
-					}else
+						?></table> <?php		
+					}
+				}else
 					{		
 					?>		
 						<p class="bg-info"><b> Você não possui nenhuma disciplina cadastrada!</b></p>				
 					<?php
 					}
-				}
 				?>
 			</div>
 		</div>

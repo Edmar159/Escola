@@ -12,8 +12,14 @@
 	while ($qtques >= 0) 
 	{
 		$codQ = $_POST[$qtques];
-		mysqli_query($con, "INSERT into prova (codAvaliacao, codQuestao) VALUES('$codA','$codQ')");
-		$qtques --;
+		$result = mysqli_query($con, "SELECT * FROM prova where codAvaliacao ='$codA' and codQuestao ='$codQ'");
+		if($repetido = mysqli_fetch_object($result)){
+			header("Location: cadAvaliacao.php?error=Questões repetidas, tente novamente!");
+			exit();
+		}else{
+			mysqli_query($con, "INSERT into prova (codAvaliacao, codQuestao) VALUES('$codA','$codQ')");
+			$qtques --;
+		}
 	}
 	header("Location: cadAvaliacao.php?success=Avaliação cadastrada com sucesso!");
 	exit();

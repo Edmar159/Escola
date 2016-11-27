@@ -35,8 +35,7 @@ if(isset($_GET['busca']))
 {	
 	$busca = $_GET['busca'];
 	if ($busca == NULL){?>
-		<p class="bg-success" style="color:green"><?php echo "Por favor, entre com termos de busca." ?></p>
-	
+		
 	<?php }
 	else{
 		$result = mysqli_query($con, "SELECT * FROM aluno WHERE log_aluno like '%$busca%' or nome like '%$busca%'");

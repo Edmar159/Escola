@@ -37,7 +37,7 @@
 					         	<ul class="dropdown-menu">
 					            <li><a href="../Usuario/cadProf.php">Cadastro Professor</a></li>
 					            <li><a href="../Usuario/cadAlun.php">Cadastro Aluno</a></li>
-					            <li><a href="../Usuario/buscaUsuario.php">Consulta Usuário</a></li>
+					            <li><a href="../Usuario/buscaUsuario.php?busca=">Consulta Usuário</a></li>
 					     
 					          </ul>
 					        </li>
