@@ -44,7 +44,7 @@
 					      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Entrar</button>
 					    </div>
 					    <div class="col-md-3">					    	
-					      <a class="btn btn-default" href="cadastroUsuario.php" role="button"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Cadastrar</a>
+					      <a class="btn btn-default" disabled role="button"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Cadastrar</a>
 					    </div>
 					  </div>
 					</form>

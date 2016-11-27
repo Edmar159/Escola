@@ -178,11 +178,45 @@ if($tipo == "professor"){
 										<span class="detalhes"><?php $media/$aux ?></a></span><br>
 									</td>
 								</tr>	
-							</table> <?php	
+							</table>
+						</div> <?php	
 						}
-					// SELECIONAR AS AVALIAÇÕES CADASTRADAS PARA A TURMA QUE O ALUNO ESTÁ CADASTRADO E AINDA NÃO EFETUOU, ENVIAR ISSO PARA PAG DA PROVA
 					}
 					?>
+					<div class="panel panel-primary">
+				  			<div class="panel-heading">Avaliações Pendentes</div>
+							<table class="table table-striped">
+								<tr>
+									<td><b>Disciplina</b></td>
+									<td><b>Professor</b></td>
+									<td></td>
+								</tr>
+								<?php
+					$result = mysqli_query($con, "SELECT * FROM turma where codTurma = '$codT'");
+					$turma = mysqli_fetch_object($result);
+					$result = mysqli_query($con, "SELECT curso FROM disciplina where codDisciplina = '$turma->codDisciplina'");
+					$disc = mysqli_fetch_object($result);
+					$result = mysqli_query($con, "SELECT nome FROM professor where codProfessor = '$turma->codDisciplina'");
+					$prof = mysqli_fetch_object($result);
+					$result = mysqli_query($con, "SELECT * FROM avaliacao where codTurma = '$turma->codTurma'");
+					while($aval = mysqli_fetch_object($result)){
+						$resul = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAvaliacao = '$aval->codAvaliacao' and codAluno = '$cod'");
+						if($ava_aluno = mysqli_fetch_object($resul)){
+
+						}else{ ?>
+							
+								<tr>
+									<td><a href="../Prova/Prova.php?codA=<?php echo $aval->codAvaliacao ?>"><span class="detalhes"><?php echo $disc->curso ?></a></span><br></td>
+									<td><a href="../Prova/Prova.php?codA=<?php echo $aval->codAvaliacao ?>"><span class="detalhes"><?php echo $prof->nome ?></a></span><br></td>
+									</td>
+								</tr>	
+							
+					<?php
+						}	
+					}
+					?>
+					</table>
+						</div>
 				</div>
 			</div>
 		</div>
