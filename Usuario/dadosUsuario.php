@@ -80,7 +80,7 @@ if($tipo == "professor"){
 								<tr>
 									<td><b>Curso</b></td>
 									<td><b>Ementa</b></td>
-									<td></td>
+									
 								</tr>
 						<?php
 						
@@ -90,14 +90,9 @@ if($tipo == "professor"){
 								$usuario = mysqli_fetch_object($resul);
 								?>
 								<tr>
-									<td><span class="detalhes"><?php echo $usuario->curso ?></a></span><br></td>
-									<td><span class="detalhes"><?php echo $usuario->ementa ?></a></span><br>
-									</td>
-									</td>
-									<td>
-								<a class="btn btn-default btn-xs"  href="../Disciplina/altDisc.php?cod=<?php echo $usuario->codDisciplina; ?>"  role="button" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
-									</td>
-								
+									<td><a href="../Turma/dadosTurma.php?cod=<?php echo $user->codTurma ?>"><span class="detalhes"><?php echo $usuario->curso ?></a></span><br></td>
+									<td><a href="../Turma/dadosTurma.php?cod=<?php echo $user->codTurma ?>"><span class="detalhes"><?php echo $usuario->ementa ?></a></span><br>
+									
 								</tr>
 								
 								<?php

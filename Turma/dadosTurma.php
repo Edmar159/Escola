@@ -5,16 +5,18 @@
 
 $cod = $_GET['cod'];
 
-$result = mysqli_query($con, "SELECT * FROM turma WHERE cod = '$cod'");
+$result = mysqli_query($con, "SELECT * FROM turma WHERE codTurma = '$cod'");
+$turma = mysqli_fetch_object($result);
+$result = mysqli_query($con, "SELECT * FROM disciplina WHERE codDisciplina = '$turma->codDisciplina'");
+$disciplina = mysqli_fetch_object($result);
 
- 
 
 ?>
 	 
 <div class="row col-md-12">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h3 class="panel-title">Dados da turma</h3>
+			<h3 class="panel-title"><?php echo $disciplina->curso; ?> </h3>
 		</div>
 		<?php 
 		$aux =0;
@@ -25,97 +27,42 @@ $result = mysqli_query($con, "SELECT * FROM turma WHERE cod = '$cod'");
 			
 				?><table class="table table-striped">
 						<tr>
-							<td><b>Login</b></td>
-							<td><b>Nome</b></td>
-							<td><b>Pais</b></td>
-							<td><b>Cidade</b></td>
-							<td><b>Estado</b></td>
-							<td><b>Data de nascimento</b></td>
-							<td><b>E-mail</b></td>
-							<td><b>Tipo</b></td>
-							<td><b>Categoria</b></td>
-
+							<td><b>Aluno</b></td>
+							<td><b>Média</b></td>
+							<td><b>Condição</b></td>
 						</tr>
 				<?php
-				while($usuario = mysqli_fetch_object($result))
+				$result = mysqli_query($con, "SELECT * FROM matricula where codTurma = '$cod'");
+				while($matricula = mysqli_fetch_object($result))
 				{
-				?>					
-					<td><span class="detalhes"><?php echo $usuario->login ?></span></td>
-					<td><span class="detalhes"><?php echo $usuario->nome ?></span></td>
-					<td><span class="detalhes"><?php echo $usuario->pais ?></span></td>
-					<td><span class="detalhes"><?php echo $usuario->cidade ?></span></td>
-					<td><span class="detalhes"><?php echo $usuario->estado ?></span></td>
-					<td><span class="detalhes"><?php echo $usuario->data_n ?></span></td>
-					<td><span class="detalhes"><?php echo $usuario->email ?></span></td>
-					<td><span class="detalhes"><?php echo $usuario->tipo ?></span></td>
-					<td><span class="detalhes"><?php echo $usuario->categoria ?></span></td>
-				<?php
-				}
-				?></table> <?php	
-			}elseif($aux = 0)
-			{
-			?>		
-				<p class="bg-info"><b> Nenhum usuario encontrado</b></p>				
-			<?php
-			}
-		}
-		?>
-	</div>
-</div>
-
-<?php 
-
-$result = mysqli_query($con, "SELECT * FROM financiar WHERE cpf_fk = '$cpf'");
-
-?>
-
-<div class="row col-md-12">
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h3 class="panel-title">Projetos fianciados</h3>
-		</div>
-		<?php 
-		$aux =0;
-		if(isset($result))
-		{		
-			if(mysqli_num_rows($result) > 0)
-			{
-			
-				?><table class="table table-striped">
-						<tr>
-							<td></td>
-							<td><b>Nome</b></td>
-							<td><b>Descrição</b></td>
-							<td><b>Valor doado</b></td>
-							<td><b>Data</b></td>
-						</tr>
-				<?php
-				while($financiar = mysqli_fetch_object($result))
-				{
-					$resultProj = mysqli_query($con, "SELECT * FROM projeto WHERE codigo = '$financiar->cod_p_fk'");
-					$projeto = mysqli_fetch_object($resultProj);
+					$resul = mysqli_query($con, "SELECT nome, codAluno FROM aluno where codAluno = '$matricula->codAluno'");
+					$aluno = mysqli_fetch_object($resul);
 				?>
-				<tr>
-					<td><img src='../Projeto/fotos/<?php echo $projeto->imagem ?>' alt='Foto de Exibição' heigh="50" width="50"  /></td>
-					<td><span class="detalhes"><?php echo $projeto->nome_p ?></span></td>
-					<td><span class="detalhes"><?php echo $projeto->descricao ?></span></td>
-					<td><span class="detalhes"><?php echo $financiar->valor_doado ?></span></td>
-					<td><span class="detalhes"><?php echo $financiar->data_fin ?></span></td>
-				</tr>
+					<tr>					
+						<td><a href="../Disciplina/dadosDisciplina.php?codA=<?php echo $aluno->codAluno ?>&codT=<?php echo $cod ?>"><span class="detalhes"><?php  echo $aluno->nome ?></span></a></td>
+						<td><a href="../Disciplina/dadosDisciplina.php?codA=<?php echo $aluno->codAluno ?>&codT=<?php echo $cod ?>"><span class="detalhes"><?php echo $matricula->media ?></span></a></td>
+						<?php
+						if($matricula->media == NULL){
+							?> <td><b><font color="black">Provas não efetuadas</font></b></td> <?php
+						}elseif($matricula->media >= 6){
+						 	?> <td><b><font color="blue">Aprovado</font></b></td> <?php
+						}elseif(($matricula->media < 6) && ($matricula->media >= 0)){
+							?> <td><b><font color="red">Reprovado</font></b></td> <?php
+						}
+						?>
+					</tr>
 				<?php
 				}
 				?></table> <?php	
 			}elseif($aux = 0)
 			{
 			?>		
-				<p class="bg-info"><b> Nenhum usuario encontrado</b></p>				
+				<p class="bg-info"><b> Nenhum aluno matriculado!</b></p>				
 			<?php
 			}
 		}
 		?>
 	</div>
-</div>
-	
 </div>
 
 

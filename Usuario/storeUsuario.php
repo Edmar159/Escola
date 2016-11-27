@@ -61,10 +61,10 @@
 		}
 	} else {
 		if($tipo =="professor")
-					header("Location: cadProf.php?error=Usuário existente");
+					header("Location: cadProf.php?error=Senhas não conferem!");
 				exit();
 				if($tipo == "aluno")
-					header("Location: cadAlun.php?error=Usuário existente");
+					header("Location: cadAlun.php?error=Senhas não conferem!");
 				exit();
 	}
 

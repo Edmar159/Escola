@@ -24,8 +24,6 @@ $cod = $_SESSION["cod"];
 if( $_SESSION["tipo"] == "professor"){
 		$result = mysqli_query($con, "SELECT * FROM professor WHERE codProfessor = '$cod'");
 
- 
-
 ?>
 	<?php 
 	$aux =0;
