@@ -145,38 +145,46 @@ if($tipo == "professor"){
 								$media = $aux = 0;
 								$result = mysqli_query($con, "SELECT * FROM turma where codTurma = '$codT'");
 								$turma = mysqli_fetch_object($result);
-								$result = mysqli_query($con, "SELECT * FROM avaliacao where codAvaliacao = '$turma->codAvaliacao'");
+								$result = mysqli_query($con, "SELECT * FROM avaliacao where codTurma = '$turma->codTurma'");
 								while($usuario = mysqli_fetch_object($result))
 								{
 									$res = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAvaliacao = '$usuario->codAvaliacao' and codAluno = '$cod' ");
-									$ava_aluno = mysqli_fetch_object($res);
-									$res = mysqli_query($con, "SELECT * FROM avaliacao where codAvaliacao = '$ava_aluno->codAvaliacao' ");
-									$aval_global = mysqli_fetch_object($res);
-									$res = mysqli_query($con, "SELECT * FROM turma where codTruma = '$aval_global->codTurma'");
-									$turma = mysqli_fetch_object($$res);
-									$res = mysqli_query($con, "SELECT * FROM professor where codProfessor = '$turma->codProfessor'");
-									$prof = mysqli_fetch_object($$res);
-									$res = mysqli_query($con, "SELECT * FROM disciplina where codDisciplina = '$turma->codDisciplina'");
-									$disc = mysqli_fetch_object($$res);
+									if(mysqli_num_rows($res) > 0){
+										$ava_aluno = mysqli_fetch_object($res);
+										$res = mysqli_query($con, "SELECT * FROM avaliacao where codAvaliacao = '$ava_aluno->codAvaliacao' ");
+										$aval_global = mysqli_fetch_object($res);
+										$res = mysqli_query($con, "SELECT * FROM turma where codTurma = '$aval_global->codTurma'");
+										$turma = mysqli_fetch_object($res);
+										$res = mysqli_query($con, "SELECT * FROM professor where codProfessor = '$turma->codProfessor'");
+										$prof = mysqli_fetch_object($res);
+										$res = mysqli_query($con, "SELECT * FROM disciplina where codDisciplina = '$turma->codDisciplina'");
+										$disc = mysqli_fetch_object($res);
 
-									?>
-									<tr>
-										<td><span class="detalhes"><?php echo $disc->curso ?></a></span><br></td>
-										<td><span class="detalhes"><?php echo $prof->nome ?></a></span><br></td>
-										<td><span class="detalhes"><?php echo $aval_aluno->nota ?></a></span><br>
-										</td>
-									</tr>
-									
-									<?php
-									$aux++;
-									$media = $media + $ava_aluno->nota;
+										?>
+										<tr>
+											<td><span class="detalhes"><?php echo $disc->curso ?></a></span><br></td>
+											<td><span class="detalhes"><?php echo $prof->nome ?></a></span><br></td>
+											<td><span class="detalhes"><?php echo $ava_aluno->nota ?></a></span><br>
+											<td></td>
+											<td></td>
+											</td>
+										</tr>
+										
+										<?php
+										$aux++;
+										$media = $media + $ava_aluno->nota;
+									}
 								}
 
 							?>
 								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
 									<td>
-										<span class="detalhes"><?php $media/$aux ?></a></span><br>
+										<span class="detalhes"><?php echo $media/$aux ?></a></span><br>
 									</td>
+									<td></td>
 								</tr>	
 							</table>
 						</div> <?php	
