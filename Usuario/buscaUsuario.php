@@ -1,30 +1,7 @@
 <?php include_once("../header.php") ?>
 <?php include_once("../validar.php") ?>
 
-<?php
 
-if(isset($_GET['busca']))
-{	
-	$busca = $_GET['busca'];
-	if ($busca == NULL){
-		
-	}
-	else{
-		$result = mysqli_query($con, "SELECT * FROM aluno WHERE log_aluno like '%$busca%' or nome like '%$busca%'");
-		if(isset($result)){
-			if(mysqli_num_rows($result) > 0){
-			$tipo = "aluno";
-			}else{
-				$result = mysqli_query($con, "SELECT * FROM professor WHERE log_professor like '%$busca%' or nome like '%$busca%'");
-					if(isset($result)){
-						$tipo = "professor";
-					}
-				}
-			}
-		}
-	}
-
-?>
 <div class="row">
 	 <div class="row col-md-12 col-md-offset-0">    	
 	   	<div class="panel panel-primary">
@@ -52,6 +29,26 @@ if(isset($_GET['busca']))
 		</div>
 	</div>
 </div>
+<?php
+
+if(isset($_GET['busca']))
+{	
+	$busca = $_GET['busca'];
+	if ($busca == NULL){?>
+		<p class="bg-success" style="color:green"><?php echo "Por favor, entre com termos de busca." ?></p>
+	
+	<?php }
+	else{
+		$result = mysqli_query($con, "SELECT * FROM aluno WHERE log_aluno like '%$busca%' or nome like '%$busca%'");
+		if(isset($result)){
+			if(mysqli_num_rows($result) > 0){
+			$tipo = "aluno";
+			}
+			}
+		}
+	}
+
+?>
 <?php 
 if($tipo == "aluno"){ ?>
 	<div class="row ">
@@ -112,64 +109,70 @@ if($tipo == "aluno"){ ?>
 	</div>
 <?php } ?>
 <?php 
-if($tipo == "professor"){ ?>
-	<div class="row ">
-		<div class="col-md-12 col-md-offset-0">
-				<?php 
-				
-				if(isset($result))
-				{		
-					if(mysqli_num_rows($result) > 0)
-					{
+if($busca !=NULL){
+	$result = mysqli_query($con, "SELECT * FROM professor WHERE log_professor like '%$busca%' or nome like '%$busca%'");
+		if(isset($result)){
+			$tipo = "professor";
+		}
+	if($tipo == "professor"){ ?>
+		<div class="row ">
+			<div class="col-md-12 col-md-offset-0">
+					<?php 
 					
-						?>
-						
-						<div class="panel panel-primary">
-			  			<div class="panel-heading">Professores</div>
-						<table class="table table-striped">
-								<tr>
-									<td><b>Login</b></td>
-									<td><b>Nome</b></td>
-									<td><b>Endereço</b></td>
-									<td><b>Formação</b></td>
-									<td><b>Salário</b></td>
-									<td></td>
-								</tr>
-						<?php
-						while($usuario = mysqli_fetch_object($result))
-						{
-							?>
-							<tr>
-								<td><span class="detalhes"><?php echo $usuario->log_professor ?></a></span><br></td>
-								<td><span class="detalhes"><?php echo $usuario->nome ?></a></span><br>
-								</td>
-								<td><span class="detalhes"><?php echo $usuario->endereco ?></a></span><br>
-								</td>
-								<td><span class="detalhes"><?php echo $usuario->formacao ?></a></span><br>
-								</td>
-								<td><span class="detalhes"><?php echo $usuario->salario ?></a></span><br>
-								</td>
-								<td>
-							<!--		<a class="btn btn-default btn-xs"  href="dadosUsuario.php?cpf=<?php// echo $usuario->cpf; ?>" <!-- role="button" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Apagar</a>
-								</td>
-								-->
-							</tr>
-							
-							<?php
-						}
-						?></table> <?php	
-					}else
+					if(isset($result))
 					{		
-					?>		
-						<p class="bg-info"><b> Nenhum usuario encontrado</b></p>				
-					<?php
+						if(mysqli_num_rows($result) > 0)
+						{
+						
+							?>
+							
+							<div class="panel panel-primary">
+				  			<div class="panel-heading">Professores</div>
+							<table class="table table-striped">
+									<tr>
+										<td><b>Login</b></td>
+										<td><b>Nome</b></td>
+										<td><b>Endereço</b></td>
+										<td><b>Formação</b></td>
+										<td><b>Salário</b></td>
+										<td></td>
+									</tr>
+							<?php
+							while($usuario = mysqli_fetch_object($result))
+							{
+								?>
+								<tr>
+									<td><span class="detalhes"><?php echo $usuario->log_professor ?></a></span><br></td>
+									<td><span class="detalhes"><?php echo $usuario->nome ?></a></span><br>
+									</td>
+									<td><span class="detalhes"><?php echo $usuario->endereco ?></a></span><br>
+									</td>
+									<td><span class="detalhes"><?php echo $usuario->formacao ?></a></span><br>
+									</td>
+									<td><span class="detalhes"><?php echo $usuario->salario ?></a></span><br>
+									</td>
+									<td>
+								<!--		<a class="btn btn-default btn-xs"  href="dadosUsuario.php?cpf=<?php// echo $usuario->cpf; ?>" <!-- role="button" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Apagar</a>
+									</td>
+									-->
+								</tr>
+								
+								<?php
+							}
+							?></table> <?php	
+						}else
+						{		
+						?>		
+							<p class="bg-info"><b> Nenhum usuario encontrado</b></p>				
+						<?php
+						}
 					}
-				}
-				?>
+					?>
+				</div>
 			</div>
 		</div>
-	</div>
-<?php } ?>
+	<?php } 
+	}?>
 
 
 <?php include_once("../footer.php") ?>

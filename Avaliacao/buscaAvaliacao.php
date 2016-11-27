@@ -62,11 +62,13 @@ if($tipo == "professor"){
 										<tr>
 											<td><span class="detalhes"><?php echo $disc->curso ?></a></span><br></td>
 											<td><span class="detalhes"><?php echo $aval->nroQuestoes ?></a></span><br></td>
-											<td>
-												<a class="btn btn-default btn-xs"  href="altAval.php?cod=<?php echo $aval->codAvaliacao; ?>" role="button" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a> 
+											<td><?php
+											$result = mysqli_query($con, "SELECT * from avaliacao_aluno where codAvaliacao = '$aval->codAvaliacao'");
+											?>		
+												<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($result)){?> disabled <?php }else{ ?> href="altAval.php?cod=<?php echo $aval->codAvaliacao; ?>" role="button"> <?php }?><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
 											</td>
 											<td>
-												<a class="btn btn-default btn-xs"  href="deleteAval.php?cod=<?php echo $aval->codAvaliacao; ?>" role="button" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a> 
+												<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($result)){?> disabled <?php }else{ ?> href="deleteAval.php?cod=<?php echo $aval->codAvaliacao; ?>" role="button"> <?php }?><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a> 
 											</td>
 										
 										</tr>

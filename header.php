@@ -129,16 +129,21 @@
 					}   
 					?>
 						
-				</ul>
-				<form class="navbar-form navbar-left" method="POST" action="../Projeto/busProjApr.php">
+				</ul>            
+				<form class="navbar-form navbar-left" name="cse" id="searchbox_demo" action="https://www.google.com/cse">
 			        <div class="form-group">
 			          	<div class="input-group">
+			          		<input type="hidden" name="cref" value="" />
+  							<input type="hidden" name="ie" value="utf-8" />
+  							<input type="hidden" name="hl" value="" />
+  
 							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-							<input type="text" class="form-control" name="nome" placeholder="Buscar Projetos" aria-describedby="basic-addon1">
+							<input type="text" class="form-control" name="q" placeholder="Buscar Google" aria-describedby="basic-addon1">
 						</div>
 			        </div>
-			        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
-			     </form>				
+			        <button type="submit" class="btn btn-default" name="sa"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
+			     </form>
+			     <script type="text/javascript" src="https%3A%2F%2Fcse.google.com%2Fcse/tools/onthefly?form=searchbox_demo&lang="></script>				
 				<ul class="nav navbar-nav navbar-right">
 					<?php if( ! isset($_SESSION["login"])){ ?>
 					<li>
@@ -146,7 +151,7 @@
 					</li>
 					<?php }else{ ?>
 					<li>
-						<a href="../Usuario/dadosUsuario.php?cpf=<?php echo $cpf ?>" class="text-capitalize"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $login ?></a> 
+						<a href="../Usuario/dadosUsuario.php" class="text-capitalize"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $login ?></a> 
 					</li>
 					<li>
 						<a href="../sair.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair</a>
