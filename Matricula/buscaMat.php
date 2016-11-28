@@ -124,12 +124,12 @@ if($tipo == "funcionario"){
 								<?php if($aux == 1){
 								?>
 								<tr>
-									<td></td><td></td><td></td><td><span class="detalhes"><b>Alunos Matriculados</span></td><td></td><td></td><td></td>
+									<td></td><td></td><td><span class="detalhes"><b>Alunos Matriculados</span></td><td></td><td></td>
 								</tr>
 	
 								<?php $result = mysqli_query($con, "SELECT * FROM matricula where codTurma = '$alun->codTurma'");
 								while($rer=mysqli_fetch_object($result)){
-									 ?><tr> <td></td><td></td><td></td><td><span class="detalhes"><?php $ret = mysqli_query($con,"SELECT nome from aluno WHERE codAluno = '$rer->codAluno'"); $prof = mysqli_fetch_object($ret);  echo $prof->nome;?></a></span><br></td><td></td><td></td><td></td> </tr> 
+									 ?><tr><td></td><td></td><td><span class="detalhes"><?php $ret = mysqli_query($con,"SELECT nome from aluno WHERE codAluno = '$rer->codAluno'"); $prof = mysqli_fetch_object($ret);  echo $prof->nome;?></a></span><br></td><td></td><td></td> </tr> 
 									<?php
 									}			
 								}

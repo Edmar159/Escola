@@ -75,7 +75,7 @@ if($cond = mysqli_fetch_object($result)){
 									<td></td>
 									<td></td>
 									<td>
-										<span class="detalhes"><?php echo $media/$aux ?></a></span><br>
+										<span class="detalhes"><?php $media=$media/$aux; echo round($media,2) ?></a></span><br>
 									</td>
 									
 								</tr>	
@@ -152,14 +152,22 @@ if($cond = mysqli_fetch_object($result)){
 										$media = $media + $ava_aluno->nota;
 									}
 								}
-
+								$media=$media/$aux;
+								$media = round($media,2);
+								$rez=mysqli_query($con, "SELECT * FROM matricula where codAluno='$cod' and codTurma ='$codT'");
+								if($mat= mysqli_fetch_object($rez)){
+									mysqli_query($con, "UPDATE matricula set media = '$media' where codAluno='$cod' and codTurma ='$codT'");
+								}else{
+									mysqli_query($con, "INSERT into matricula (media) VALUES ('$media') where codAluno='$cod' and codTurma ='$codT'");
+									
+								}
 							?>
 								<tr>
 									<td></td>
 									<td></td>
 									<td></td>
 									<td><?php if($aux >0){?>
-										<span class="detalhes"><?php echo $media/$aux ?></a></span><br>
+										<span class="detalhes"><?php echo $media ?></a></span><br>
 										<?php
 									}?>
 									</td>

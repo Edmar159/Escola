@@ -23,14 +23,8 @@
 	$nota = ($nota / $aval->nroQuestoes) * 10;
 	$result =mysqli_query($con, "SELECT * from matricula where codAluno = '$cod' and codTurma = '$aval->codTurma'");
 	$mat = mysqli_fetch_object($result);
-	if($mat->media == NULL){
-		mysqli_query($con, "UPDATE matricula set media ='$nota' where codAluno = '$cod' and codTurma = '$aval->codTurma'");	
-	}else{
-		$media = ($mat->media + $nota) / 2;
-		mysqli_query($con, "UPDATE matricula set media ='$media' where codAluno = '$cod' and codTurma = '$aval->codTurma'");
-	}
 	
 	mysqli_query($con, "UPDATE avaliacao_aluno set nota ='$nota' where codAvaliacao = '$codA' and codAluno = '$cod'");
-	header("Location: ../Usuario/dadosUsuario.php?cod=$cod&success=Prova realizada com sucesso ( ou não )! ");
+	header("Location: ../Usuario/dadosDisciplina.php?codA=$cod&codT=$aval->codTurma&success=Prova realizada com sucesso ( ou não )! ");
 	exit();
 ?>
