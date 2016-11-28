@@ -2,9 +2,9 @@
 <?php include_once("../validar.php") ?>
 
 <?php
+$cod_P = $_SESSION['cod'];
 
-
-		$result = mysqli_query($con, "SELECT * FROM questao");	
+$result = mysqli_query($con, "SELECT questao.* FROM questao LEFT JOIN disciplina ON questao.codDisciplina = disciplina.codDisciplina LEFT JOIN turma ON turma.codDisciplina = disciplina.codDisciplina where turma.codProfessor = '$cod_P'");	
 
  
 if($tipo == "professor"){ ?>

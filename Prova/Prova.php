@@ -36,10 +36,10 @@ $prof = mysqli_fetch_object($result);
 	<div class="panel-heading">Avaliação de <?php echo $disc->curso; ?></div>
 	<table class="table table-striped">
 		<tr>
-			<td><b>Disciplina</b></td>
-			<td><b>Professor</b></td>
-			<td></td>
-			<td></td>
+			<td class="col-md-3"><b>Disciplina</b></td>
+			<td class="col-md-3"><b>Professor</b></td>
+			<td class="col-md-3"></td>
+			<td class="col-md-3"></td>
 		</tr>
 		<tr>
 			<td><b> <?php echo $disc->curso ?> </b></td>

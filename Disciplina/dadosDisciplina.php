@@ -158,8 +158,10 @@ if($cond = mysqli_fetch_object($result)){
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>
+									<td><?php if($aux >0){?>
 										<span class="detalhes"><?php echo $media/$aux ?></a></span><br>
+										<?php
+									}?>
 									</td>
 									<td></td>
 								</tr>	

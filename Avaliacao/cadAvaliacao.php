@@ -16,7 +16,7 @@
 		<?php
 	}
 
-
+$codP = $_SESSION['cod'];
 	?>
 </div>
     <div class="col-md-12 col-md-offset-0">    	
@@ -31,7 +31,7 @@
 						<div class="col-md-8">
 							<select class="form-control" name="turma">
 								<?php
-								$result = mysqli_query($con, "SELECT * FROM turma");
+								$result = mysqli_query($con, "SELECT * FROM turma where codProfessor ='$codP'");
 							 	while($turma = mysqli_fetch_object($result)){
 							 		$result1 = mysqli_query($con, "SELECT * FROM disciplina WHERE codDisciplina = '$turma->codDisciplina'");
 							 		$disc = mysqli_fetch_object($result1);

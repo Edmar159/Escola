@@ -53,7 +53,8 @@ $disciplina = mysqli_fetch_object($result);
 					</tr>
 				<?php
 				}
-				?></table> <?php	
+				?></table> 
+				<?php	
 			}elseif($aux = 0)
 			{
 			?>		
@@ -63,6 +64,7 @@ $disciplina = mysqli_fetch_object($result);
 		}
 		?>
 	</div>
+	<a href="javascript:history.back()">Voltar</a>
 </div>
 
 
