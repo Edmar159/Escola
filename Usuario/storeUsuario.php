@@ -11,8 +11,14 @@
 		$salario = $_POST['salario'];
 	$tipo = $_POST['tipo'];
 	$formacao = $_POST['formacao'];
-	if(isset($_POST['dataNascimento']))
-		$dataNascimento = $_POST['dataNascimento'];
+	if(isset($_POST['dataNascimento'])){
+		$data= $_POST['dataNascimento'];
+		
+	    if(count(explode("-",$data)) > 1){
+	        $dataNascimento = implode("/",array_reverse(explode("-",$data)));
+	    }
+
+	}
 
 
 				

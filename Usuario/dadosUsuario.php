@@ -185,8 +185,6 @@ if($tipo == "professor"){
 							<table class="table table-striped">
 									<tr>
 										<td><b>Turma</b></td>
-										<td><b>Sala</b></td>
-										<td><b>Horario</b></td>
 										<td><b>Professor</b></td>
 										<td><b>Disciplina</b></td>
 										<td></td>
@@ -199,9 +197,7 @@ if($tipo == "professor"){
 								?>
 								<tr>
 									<td><a href="../Disciplina/dadosDisciplina.php?codT=<?php echo $dados->codTurma?>"><span class="detalhes"><?php echo $dados->codTurma ?></a></span></a><br></td>
-									<td><a href="../Disciplina/dadosDisciplina.php?codT=<?php echo $dados->codTurma?>"><span class="detalhes"><?php echo $dados->sala ?></a></span><br></a></td>
-									<td><a href="../Disciplina/dadosDisciplina.php?codT=<?php echo $dados->codTurma?>"><span class="detalhes"><?php echo $dados->horario ?></a></span></a><br>
-									</td>
+						
 									<td><a href="../Disciplina/dadosDisciplina.php?codT=<?php echo $dados->codTurma?>"><span class="detalhes"><?php $resu = mysqli_query($con,"SELECT nome from professor WHERE codProfessor = '$dados->codProfessor'"); $prof = mysqli_fetch_object($resu); echo $prof->nome;?></a></span></a><br>
 									</td>
 									<td><a href="../Disciplina/dadosDisciplina.php?codT=<?php echo $dados->codTurma?>"><span class="detalhes"><?php $resu = mysqli_query($con,"SELECT curso from disciplina WHERE codDisciplina = '$dados->codDisciplina'"); $prof = mysqli_fetch_object($resu); echo $prof->curso;?></a></span></a><br>

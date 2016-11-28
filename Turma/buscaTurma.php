@@ -26,7 +26,7 @@ if(isset($_GET['busca']))
 			if(mysqli_num_rows($result) > 0)
 			{
 				$prof= mysqli_fetch_object($result);
-				$result = mysqli_query($con, "SELECT * FROM turma WHERE codProfessor = '$prof->codProfessor'");		
+				$result = mysqli_query($con, "SELECT turma.*, professor.* FROM professor left join turma on turma.codProfessor = professor.codProfessor where professor.nome like '%$busca%'");		
 			}else{
 				$busca = strtoupper($busca);
 				$result = mysqli_query($con, "SELECT * FROM disciplina WHERE curso like '%$busca%'");

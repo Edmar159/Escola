@@ -20,6 +20,10 @@
 <?php
 	$turma= $_POST['turma']; //cod turma
 	$qtques= $_POST['qtquest'];
+	if(($qtques == NULL)||($qtques == 0)){
+		header("Location: cadAvaliacao.php?error=Necessário pelo menos 1 questão!");
+		exit();
+	}
 	$aux = 0;
 	$result =mysqli_query($con, "SELECT * FROM turma where codTurma = '$turma'");
 	$tur = mysqli_fetch_object($result);

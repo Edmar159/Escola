@@ -23,7 +23,7 @@
 if($tipo == "professor"){
 	$cod=$_SESSION['cod'];	
 
-	$result = mysqli_query($con, "SELECT * FROM turma where codProfessor = '$cod'");
+	$result = mysqli_query($con, "SELECT turma.*, avaliacao.*, disciplina.*, prova.* FROM turma LEFT JOIN avaliacao on turma.codTurma = avaliacao.codTurma LEFT JOIN disciplina on turma.codDisciplina = disciplina.codDisciplina LEFT JOIN prova ON avaliacao.codAvaliacao = prova.codAvaliacao WHERE turma.codProfessor = 5 GROUP BY avaliacao.codAvaliacao");
 	//$temp = mysqli_fetch_object($result);
 	//$result = mysqli_query($con, "SELECT * FROM disciplina where codDisciplina = '$temp->codDisciplina'");
 
@@ -49,34 +49,29 @@ if($tipo == "professor"){
 									<td></td>
 								</tr>
 						<?php
-						
+					
 							while($user = mysqli_fetch_object($result))
-							{
-								$resul = mysqli_query($con, "SELECT * FROM disciplina where codDisciplina = '$user->codDisciplina'");
-								$disc = mysqli_fetch_object($resul);
-								$resul = mysqli_query($con, "SELECT * FROM avaliacao where codTurma = '$user->codTurma'");
-								while($aval = mysqli_fetch_object($resul)){
-									$resul10 =mysqli_query($con, "SELECT * from prova where codAvaliacao='$aval->codAvaliacao'");
-									if($prova = mysqli_fetch_object($resul10)){
+							{	
+								if($user->codAvaliacao != NULL){
+									?>
+									<tr>
+										<td><span class="detalhes"><?php echo $user->curso ?></a></span><br></td>
+										<td><span class="detalhes"><?php echo $user->nroQuestoes ?></a></span><br></td>
+										<td><?php
+										$resu = mysqli_query($con, "SELECT * from avaliacao_aluno where codAvaliacao = '$user->codAvaliacao'");
+										?>		
+											<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($resu)){?> disabled <?php }else{ ?> href="altAval.php?cod=<?php echo $user->codAvaliacao; ?>" role="button"> <?php }?><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
+										</td>
+										<td><?php
+										$resu = mysqli_query($con, "SELECT * from avaliacao_aluno where codAvaliacao = '$user->codAvaliacao'");
 										?>
-										<tr>
-											<td><span class="detalhes"><?php echo $disc->curso ?></a></span><br></td>
-											<td><span class="detalhes"><?php echo $aval->nroQuestoes ?></a></span><br></td>
-											<td><?php
-											$result = mysqli_query($con, "SELECT * from avaliacao_aluno where codAvaliacao = '$aval->codAvaliacao'");
-											?>		
-												<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($result)){?> disabled <?php }else{ ?> href="altAval.php?cod=<?php echo $aval->codAvaliacao; ?>" role="button"> <?php }?><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
-											</td>
-											<td><?php
-											$result = mysqli_query($con, "SELECT * from avaliacao_aluno where codAvaliacao = '$aval->codAvaliacao'");
-											?>
-												<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($result)){?> disabled <?php }else{ ?> href="deleteAval.php?cod=<?php echo $aval->codAvaliacao; ?>" role="button"> <?php }?><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a> 
-											</td>
-										
-										</tr>
-										
-									<?php
-									}
+											<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($resu)){?> disabled <?php }else{ ?> href="deleteAval.php?cod=<?php echo $user->codAvaliacao; ?>" role="button"> <?php }?><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a> 
+										</td>
+									
+									</tr>
+									
+								<?php 
+								 
 								}
 							}
 						

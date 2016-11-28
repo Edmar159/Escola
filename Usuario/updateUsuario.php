@@ -13,8 +13,14 @@
 	$tipo = $_POST['tipo'];
 	
 	//$formacao = $_POST['formacao'];
-	if(isset($_POST['dataNascimento']))
-		$dataNascimento = $_POST['dataNascimento'];
+	if(isset($_POST['dataNascimento'])){
+		$data= $_POST['dataNascimento'];
+		
+	    if(count(explode("-",$data)) > 1){
+	        $dataNascimento = implode("/",array_reverse(explode("-",$data)));
+	    }
+
+	}
 	$sen = $_POST['senha_atual'];
 	if($tipo == "professor"){
 		$result = mysqli_query($con, "SELECT * FROM professor WHERE codProfessor = '$cod'");

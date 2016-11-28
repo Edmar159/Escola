@@ -34,9 +34,15 @@
 if(isset($_GET['busca']))
 {	
 	$busca = $_GET['busca'];
-	if ($busca == NULL){?>
-		
-	<?php }
+	if ($busca == NULL){
+		$busca =" ";
+		$result = mysqli_query($con, "SELECT * FROM aluno WHERE log_aluno like '%$busca%' or nome like '%$busca%'");
+		if(isset($result)){
+			if(mysqli_num_rows($result) > 0){
+			$tipo = "aluno";
+			}
+			}
+	 }
 	else{
 		$result = mysqli_query($con, "SELECT * FROM aluno WHERE log_aluno like '%$busca%' or nome like '%$busca%'");
 		if(isset($result)){
@@ -98,7 +104,7 @@ if($tipo == "aluno"){ ?>
 					}else
 					{		
 					?>		
-						<p class="bg-info"><b> Nenhum usuario encontrado</b></p>				
+						<p class="bg-info"><b> Nenhum aluno encontrado</b></p>				
 					<?php
 					}
 				}
@@ -162,7 +168,7 @@ if($busca !=NULL){
 						}else
 						{		
 						?>		
-							<p class="bg-info"><b> Nenhum usuario encontrado</b></p>				
+							<p class="bg-info"><b> Nenhum professor encontrado</b></p>				
 						<?php
 						}
 					}
