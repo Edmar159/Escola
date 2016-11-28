@@ -34,7 +34,7 @@ if(isset($_GET['busca']))
 						<div class="col-md-9">
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-							   	<input type="text" class="form-control" name="busca" placeholder="Curso ou ementa" aria-describedby="basic-addon1">
+							   	<input type="text" class="form-control" name="busca" placeholder="Disciplina ou ementa" aria-describedby="basic-addon1">
 						   	</div>
 						</div>
 						<div class="col-md-1">
@@ -132,7 +132,7 @@ if($tipo == "professor"){
 						<div class="col-md-9">
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-							   	<input type="text" class="form-control" name="busca" placeholder="Curso ou ementa" aria-describedby="basic-addon1">
+							   	<input type="text" class="form-control" name="busca" placeholder="Disciplina ou ementa" aria-describedby="basic-addon1">
 						   	</div>
 						</div>
 						<div class="col-md-1">

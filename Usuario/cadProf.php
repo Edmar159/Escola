@@ -22,7 +22,7 @@
     <div class="col-md-12 col-md-offset-0">    	
 	   	<div class="panel panel-primary">
 			<div class="panel-heading">
-					<h3 class="panel-title">Cadastrar Usuario</h3>
+					<h3 class="panel-title">Cadastrar Professor</h3>
 			</div>
 			<div class="panel-body">
 				<form class="form-horizontal" method="POST" action="storeUsuario.php" >
