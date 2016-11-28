@@ -24,26 +24,21 @@ if($tipo == "funcionario"){
 	{	
 		$busca = $_GET['busca'];
 		if ($busca == NULL){
-			$result = mysqli_query($con, "SELECT * FROM aluno");
-			if(isset($result)){
-				$alun = mysqli_fetch_object($result);
-				$result = mysqli_query($con, "SELECT * FROM matricula where codAluno = '$alun->codAluno'");
-				}
-			
+				$result = mysqli_query($con, "SELECT aluno.*,matricula.* FROM aluno LEFT JOIN matricula ON aluno.codAluno = matricula.codAluno");			
 		}else 
 		{
 			$result = mysqli_query($con, "SELECT * FROM aluno WHERE nome like '%$busca%'");
 			if(isset($result)){
 				if(mysqli_num_rows($result)>0){
 					$alun = mysqli_fetch_object($result);
-					$result = mysqli_query($con, "SELECT * FROM matricula where codAluno = '$alun->codAluno'");
+					$result = mysqli_query($con, "SELECT aluno.*,matricula.* FROM aluno LEFT JOIN matricula ON aluno.codAluno = matricula.codAluno where aluno.nome like '%$busca%'");
 
 				}else{
 				$result = mysqli_query($con, "SELECT * FROM matricula WHERE codTurma like '%$busca%'");
 				if(isset($result)){
 					if(mysqli_num_rows($result)>0){
 						$alun = mysqli_fetch_object($result);
-						$result = mysqli_query($con, "SELECT * FROM turma where codTurma = '$alun->codTurma'");
+						$result = mysqli_query($con, "SELECT aluno.*,matricula.* FROM aluno LEFT JOIN matricula ON aluno.codAluno = matricula.codAluno where matricula.codTurma = '$busca'");
 						$aux = 1;
 						
 					}
@@ -98,13 +93,13 @@ if($tipo == "funcionario"){
 				  			<div class="panel-heading">Turmas</div>
 							<table class="table table-striped">
 									<tr>
-										<td><b>Turma</b></td>
-										<td><b>Sala</b></td>
-										<td><b>Horario</b></td>
-										<td><b>Professor</b></td>
-										<td><b>Aluno</b></td>
-										<td><b>Disciplina</b></td>
-										<td></td>
+										<td class="col-md-1"><b>Turma</b></td>
+										<td class="col-md-1"><b>Sala</b></td>
+										<td class="col-md-1"><b>Horario</b></td>
+										<td class="col-md-1"><b>Professor</b></td>
+										<td class="col-md-1"><b>Aluno</b></td>
+										<td class="col-md-1"><b>Disciplina</b></td>
+										<td class="col-md-1"></td>
 									</tr>
 							<?php
 
@@ -121,7 +116,7 @@ if($tipo == "funcionario"){
 									</td>
 									<td><span class="detalhes"><?php $resu = mysqli_query($con,"SELECT nome from professor WHERE codProfessor = '$dados->codProfessor'"); $prof = mysqli_fetch_object($resu); echo $prof->nome;?></a></span><br>
 									</td>
-									<td><span class="detalhes"><?php $resu = mysqli_query($con,"SELECT codAluno from matricula WHERE codTurma = '$dados->codTurma'"); $alun = mysqli_fetch_object($resu); $resu = mysqli_query($con,"SELECT * from aluno WHERE codAluno = '$alun->codAluno'"); $alun = mysqli_fetch_object($resu); echo $alun->nome;?></a></span><br>
+									<td><span class="detalhes"><?php  echo $usuario->nome;?></a></span><br>
 									</td>
 									<td><span class="detalhes"><?php $resu = mysqli_query($con,"SELECT curso from disciplina WHERE codDisciplina = '$dados->codDisciplina'"); $prof = mysqli_fetch_object($resu); echo $prof->curso;?></a></span><br>
 									</td>
@@ -133,12 +128,12 @@ if($tipo == "funcionario"){
 								<?php if($aux == 1){
 								?>
 								<tr>
-									<td><span class="detalhes"><b>Alunos Matriculados</span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+									<td></td><td></td><td></td><td><span class="detalhes"><b>Alunos Matriculados</span></td><td></td><td></td><td></td>
 								</tr>
 	
 								<?php $result = mysqli_query($con, "SELECT * FROM matricula where codTurma = '$alun->codTurma'");
 								while($rer=mysqli_fetch_object($result)){
-									 ?><tr> <td><span class="detalhes"><?php $ret = mysqli_query($con,"SELECT nome from aluno WHERE codAluno = '$rer->codAluno'"); $prof = mysqli_fetch_object($ret);  echo $prof->nome;?></a></span><br></td><td></td><td></td><td></td><td></td><td></td><td></td> </tr> 
+									 ?><tr> <td></td><td></td><td></td><td><span class="detalhes"><?php $ret = mysqli_query($con,"SELECT nome from aluno WHERE codAluno = '$rer->codAluno'"); $prof = mysqli_fetch_object($ret);  echo $prof->nome;?></a></span><br></td><td></td><td></td><td></td> </tr> 
 									<?php
 									}			
 								}
