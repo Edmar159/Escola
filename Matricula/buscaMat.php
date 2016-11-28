@@ -117,6 +117,11 @@ if($tipo == "funcionario"){
 									<td><span class="detalhes"><?php $resu = mysqli_query($con,"SELECT curso from disciplina WHERE codDisciplina = '$dados->codDisciplina'"); $prof = mysqli_fetch_object($resu); echo $prof->curso;?></a></span><br>
 									</td>
 									<td>
+									<?php 
+										$rez = mysqli_query($con, "SELECT * from matricula where codTurma = '$usuario->codTurma'");
+									?>
+									<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($rez)){?> disabled <?php }else{ ?> href="desativarMat.php?codT=<?php echo $dados->codTurma; ?>&codA=<?php echo $alun->codAluno ?>"  <?php }?>role="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Excluir</a>
+
 									<a class="btn btn-default btn-xs"  href="desativarMat.php?codT=<?php echo $dados->codTurma; ?>&codA=<?php echo $alun->codAluno ?>"  role="button" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a> 
 									</td>
 									

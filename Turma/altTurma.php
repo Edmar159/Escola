@@ -79,7 +79,7 @@ if( $_SESSION["tipo"] == "funcionario"){
 							<div class="form-group">
 								<div class="col-md-1 col-md-offset-9">
 						    		
-									<a class="btn btn-default btn"  href="desativarTurma.php?cod=<?php echo $usuario->codTurma ?>"  role="button" ><span class="glyphicon glyphicon-trash" aria-hidden="true" style="width:25px"></span> Deletar</a>
+								<!--	<a class="btn btn-default btn"  href="desativarTurma.php?cod=<?php// echo $usuario->codTurma ?>" <!--  role="button" ><span class="glyphicon glyphicon-trash" aria-hidden="true" style="width:25px"></span> Deletar</a> -->
 								</div>
 							</div>
 						

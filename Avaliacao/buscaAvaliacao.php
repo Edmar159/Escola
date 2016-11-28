@@ -60,12 +60,12 @@ if($tipo == "professor"){
 										<td><?php
 										$resu = mysqli_query($con, "SELECT * from avaliacao_aluno where codAvaliacao = '$user->codAvaliacao'");
 										?>		
-											<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($resu)){?> disabled <?php }else{ ?> href="altAval.php?cod=<?php echo $user->codAvaliacao; ?>" role="button"> <?php }?><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
+											<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($resu)){?> disabled <?php }else{ ?> href="altAval.php?cod=<?php echo $user->codAvaliacao; ?>"  <?php }?> role="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
 										</td>
 										<td><?php
 										$resu = mysqli_query($con, "SELECT * from avaliacao_aluno where codAvaliacao = '$user->codAvaliacao'");
 										?>
-											<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($resu)){?> disabled <?php }else{ ?> href="deleteAval.php?cod=<?php echo $user->codAvaliacao; ?>" role="button"> <?php }?><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a> 
+											<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($resu)){?> disabled <?php }else{ ?> href="deleteAval.php?cod=<?php echo $user->codAvaliacao; ?>"  <?php }?>role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a> 
 										</td>
 									
 									</tr>

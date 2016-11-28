@@ -19,14 +19,26 @@
 	if($usuario = mysqli_fetch_object($result))
 	{	
 		
-		if( $prof != NULL)
-		{
-			$result = mysqli_query($con, "UPDATE turma set codProfessor='$prof' where codTurma='$cod'");
+		if( $prof != $usuario->codProfessor)
+		{	
+			$result = mysqli_query($con, "SELECT * FROM turma WHERE codProfessor = '$prof' and codDisciplina = '$usuario->codDisciplina'" ); 
+			if($cond = mysqli_fetch_object($result)){
+				header("Location: altTurma.php?cod=$cod&error=Professor já leciona esta disciplina!");
+				exit();
+			}else{
+				$result = mysqli_query($con, "UPDATE turma set codProfessor='$prof' where codTurma='$cod'");
+			}
 		}
 
-		if($disc != NULL)
+		if($disc != $usuario->codDisciplina)
 		{
+			$result = mysqli_query($con, "SELECT * FROM turma WHERE codProfessor = '$prof' and codDisciplina = '$disc'" );
+			if($cond = mysqli_fetch_object($result)){
+				header("Location: altTurma.php?cod=$cod&error=Professor já leciona esta disciplina!");
+				exit();
+			}else{
 				$result = mysqli_query($con, "UPDATE turma set codDisciplina='$disc' where codTurma='$cod'");
+			}
 		}
 		
 		header("Location:altTurma.php?cod=$cod&success=Dados atualizados com sucesso!");		

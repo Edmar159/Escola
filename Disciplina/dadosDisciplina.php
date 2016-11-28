@@ -152,14 +152,16 @@ if($cond = mysqli_fetch_object($result)){
 										$media = $media + $ava_aluno->nota;
 									}
 								}
-								$media=$media/$aux;
-								$media = round($media,2);
-								$rez=mysqli_query($con, "SELECT * FROM matricula where codAluno='$cod' and codTurma ='$codT'");
-								if($mat= mysqli_fetch_object($rez)){
-									mysqli_query($con, "UPDATE matricula set media = '$media' where codAluno='$cod' and codTurma ='$codT'");
-								}else{
-									mysqli_query($con, "INSERT into matricula (media) VALUES ('$media') where codAluno='$cod' and codTurma ='$codT'");
-									
+								if($aux != 0){
+									$media=$media/$aux;
+									$media = round($media,2);
+									$rez=mysqli_query($con, "SELECT * FROM matricula where codAluno='$cod' and codTurma ='$codT'");
+									if($mat= mysqli_fetch_object($rez)){
+										mysqli_query($con, "UPDATE matricula set media = '$media' where codAluno='$cod' and codTurma ='$codT'");
+									}else{
+										mysqli_query($con, "INSERT into matricula (media) VALUES ('$media') where codAluno='$cod' and codTurma ='$codT'");
+										
+									}
 								}
 							?>
 								<tr>

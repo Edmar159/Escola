@@ -1,0 +1,31 @@
+Erros
+
+[ 01 ]
+=> Onde: 
+Quando vou atualizar uma disciplina.
+=> O que ocorre: 
+Faz certo, mas não exibe nenhuma confirmação de sucesso ou erro se alterou os dados da disciplina.
+
+
+[ 02 ] ????
+=> Onde:
+Quando vou alterar uma turma
+=> O que ocorre:
+Depois de consultar uma turma do "prof X", seleciono alterar. Dentro da caixa alterar, mesmo não selecionando
+aquele professor X, consigo exluir sua turma.
+
+[ 03 ]
+=> Onde:
+Quando consulto matricula
+=> O que ocorre:
+Ao consultar uma matricula e não especificar nenhum argumento, os primeiros resultados são aqueles que estão em 
+alguma turma, depois exibe aqueles que nao estão em nenhuma turma e um monte de erros de consulta.
+----> OBS: Então quem for mostrar isso ao baldochi, não consulte sem nenhum argumento!!!
+
+[ 04 ]
+=> Onde:
+Quando tento excluir uma turma
+=> O que ocorre:
+Apenas cadastrei avaliações nas turmas, mas nenhum aluno fez ainda. Porém não consigo exlcuir a turma, aparece a mensagem:
+"Avaliações foram realizadas, impossivel cancelar matrícula".
+----> OBS: Se não der tempo de corrigir isto, não tentem excluir uma turma pro Baldochi.

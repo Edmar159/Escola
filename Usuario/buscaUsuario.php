@@ -93,9 +93,9 @@ if($tipo == "aluno"){ ?>
 								<td><span class="detalhes"><?php echo $usuario->dataNasc ?></a></span><br>
 								</td>
 								<td>
-							<!--		<a class="btn btn-default btn-xs"  href="dadosUsuario.php?cpf=<?php// echo $usuario->cpf; ?>" <!-- role="button" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Apagar</a>
+							<a class="btn btn-default btn-xs"  href="altAlun.php?codA=<?php echo $usuario->codAluno; ?>" role="button" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
 								</td>
-								-->
+								
 							</tr>
 							
 							<?php
@@ -157,9 +157,9 @@ if($busca !=NULL){
 									<td><span class="detalhes"><?php echo $usuario->salario ?></a></span><br>
 									</td>
 									<td>
-								<!--		<a class="btn btn-default btn-xs"  href="dadosUsuario.php?cpf=<?php// echo $usuario->cpf; ?>" <!-- role="button" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Apagar</a>
+										<a class="btn btn-default btn-xs"  href="altProf.php?codP=<?php echo $usuario->codProfessor; ?>" role="button" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
 									</td>
-									-->
+									
 								</tr>
 								
 								<?php

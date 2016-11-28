@@ -87,11 +87,12 @@ if(isset($_GET['busca']))
 								<tr>
 									<td><b>Professor</b></td>
 									<td><b>Disciplina</b></td>
-									<td></td>
+									<td></td><td></td>
 								</tr>
 						<?php
 						while($usuario = mysqli_fetch_object($result))
 						{
+
 							?>
 							<tr>
 								<td><span class="detalhes"><?php $resu = mysqli_query($con,"SELECT nome from professor WHERE codProfessor = '$usuario->codProfessor'"); $prof = mysqli_fetch_object($resu); echo $prof->nome;?></a></span><br>
@@ -99,7 +100,17 @@ if(isset($_GET['busca']))
 								<td><span class="detalhes"><?php $resu = mysqli_query($con,"SELECT curso from disciplina WHERE codDisciplina = '$usuario->codDisciplina'"); $prof = mysqli_fetch_object($resu); echo $prof->curso;?></a></span><br>
 								</td>
 								<td>
-								<a class="btn btn-default btn-xs"  href="altTurma.php?cod=<?php echo $usuario->codTurma; ?>"  role="button" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
+								<?php 
+									$rez = mysqli_query($con, "SELECT * from matricula where codTurma = '$usuario->codTurma'");
+								?>
+								<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($rez)){?> disabled <?php }else{ ?> href="altTurma.php?cod=<?php echo $usuario->codTurma; ?>"  <?php }?>role="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
+
+								
+								</td>
+								<td><?php
+									$rez = mysqli_query($con, "SELECT * from matricula where codTurma = '$usuario->codTurma'");
+								?>
+								<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($rez)){?> disabled <?php }else{ ?> href="desativarTurma.php?cod=<?php echo $usuario->codTurma ?>"  <?php }?>role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a>
 								</td>
 								
 							</tr>

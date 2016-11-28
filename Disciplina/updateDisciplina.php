@@ -29,7 +29,7 @@
 				$result = mysqli_query($con, "UPDATE disciplina set ementa='$ementa' where codDisciplina='$usuario->codDisciplina'");
 		}
 		
-		header("Location: altDisc.php?cod=$cod&sucess=Dados atualizados com sucesso!");		
+		header("Location: altDisc.php?cod=$cod&success=Dados atualizados com sucesso!");		
 		exit();
 	}
 		header("Location: altDisc.php?cod=$cod&error=Dados não conferem!");		

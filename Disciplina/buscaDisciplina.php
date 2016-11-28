@@ -1,6 +1,22 @@
 <?php include_once("../header.php") ?>
 <?php include_once("../validar.php") ?>
 
+<div class="mensagme text-center col-md-12">
+	<?php 
+	if(isset($_GET['error']))
+	{
+		?> 
+		<p class="bg-danger" style="color:red"><?php echo $_GET['error'] ?></p>
+		<?php
+		} 
+		else if(isset($_GET['success']))
+		{
+		?> 
+			<p class="bg-success" style="color:green"><?php echo $_GET['success'] ?></p>
+		<?php
+		}
+		?>
+</div>
 <?php
 $aux = 0;
 if($tipo == "funcionario"){

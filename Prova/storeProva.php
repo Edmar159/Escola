@@ -25,6 +25,6 @@
 	$mat = mysqli_fetch_object($result);
 	
 	mysqli_query($con, "UPDATE avaliacao_aluno set nota ='$nota' where codAvaliacao = '$codA' and codAluno = '$cod'");
-	header("Location: ../Usuario/dadosDisciplina.php?codA=$cod&codT=$aval->codTurma&success=Prova realizada com sucesso ( ou não )! ");
+	header("Location: ../Disciplina/dadosDisciplina.php?codA=$cod&codT=$aval->codTurma&success=Prova realizada com sucesso ( ou não )! ");
 	exit();
 ?>
