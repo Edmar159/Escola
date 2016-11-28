@@ -85,8 +85,6 @@ if(isset($_GET['busca']))
 			  			<div class="panel-heading">Turmas</div>
 						<table class="table table-striped">
 								<tr>
-									<td><b>Sala</b></td>
-									<td><b>Horario</b></td>
 									<td><b>Professor</b></td>
 									<td><b>Disciplina</b></td>
 									<td></td>
@@ -96,9 +94,6 @@ if(isset($_GET['busca']))
 						{
 							?>
 							<tr>
-								<td><span class="detalhes"><?php echo $usuario->sala ?></a></span><br></td>
-								<td><span class="detalhes"><?php echo $usuario->horario ?></a></span><br>
-								</td>
 								<td><span class="detalhes"><?php $resu = mysqli_query($con,"SELECT nome from professor WHERE codProfessor = '$usuario->codProfessor'"); $prof = mysqli_fetch_object($resu); echo $prof->nome;?></a></span><br>
 								</td>
 								<td><span class="detalhes"><?php $resu = mysqli_query($con,"SELECT curso from disciplina WHERE codDisciplina = '$usuario->codDisciplina'"); $prof = mysqli_fetch_object($resu); echo $prof->curso;?></a></span><br>

@@ -44,18 +44,6 @@ if( $_SESSION["tipo"] == "funcionario"){
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
-							<label class="col-md-3 control-label">Sala</label>
-							<div class="col-md-8">
-								<input type="text" class="form-control" name="sala" placeholder="<?php echo $usuario->sala ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">Horário</label>
-							<div class="col-md-8">
-								<input type="text" class="form-control" name="horario" placeholder="<?php echo $usuario->horario ?>">
-							</div>
-						</div>
-						<div class="form-group">
 						    <label class="col-md-3	 control-label">*Professor</label>
 							<div class="col-md-8">
 							<select class="form-control" name="professor">

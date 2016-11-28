@@ -28,18 +28,6 @@
 			<div class="panel-body">
 				<form class="form-horizontal" method="POST" action="storeTurma.php" >
 					<div class="form-group">
-					    <label class="col-md-3 control-label">*Sala</label>
-						<div class="col-md-9">
-						   	<input type="text" class="form-control" name="sala" placeholder="C1102">
-						</div>
-					</div>
-					<div class="form-group">
-					    <label class="col-md-3 control-label">*Horário</label>
-						<div class="col-md-9">
-						   	<input type="Time" class="form-control" name="horario" placeholder="19:00">
-						</div>
-					</div>
-					<div class="form-group">
 					    <label class="col-md-3	 control-label">*Professor</label>
 						<div class="col-md-9">
 							<select class="form-control" name="professor">
