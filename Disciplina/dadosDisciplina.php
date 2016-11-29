@@ -75,7 +75,11 @@ if($cond = mysqli_fetch_object($result)){
 									<td></td>
 									<td></td>
 									<td>
+									
+									<?php
+										if($aux != 0){ ?>
 										<span class="detalhes"><?php $media=$media/$aux; echo round($media,2) ?></a></span><br>
+									<?php }?>
 									</td>
 									
 								</tr>	
