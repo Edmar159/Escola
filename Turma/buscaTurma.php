@@ -121,7 +121,7 @@ if(isset($_GET['busca']))
 					}else
 					{		
 					?>		
-						<p class="bg-info"><b> Nenhum usuario encontrado</b></p>				
+						<p class="bg-info"><b> Nenhuma turma encontrada!</b></p>				
 					<?php
 					}
 				}

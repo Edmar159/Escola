@@ -48,6 +48,16 @@ if($tipo == "professor"){ ?>
 								<td><span class="detalhes"><?php echo $usuario->resp4 ?></a></span><br>
 								</td>
 								<td>
+								<?php
+									$kraken = 0; // condicional para botao alterar
+									$resultado = mysqli_query($con, "SELECT * from prova where codQuestao = '$usuario->codQuestao'"); 
+									while($cond = mysqli_fetch_object($resultado)){
+										$resulta = mysqli_query($con, "SELECT * FROM avaliacao_aluno where codAvaliacao = '$cond->codAvaliacao'");
+										if(mysqli_num_rows($resulta)>0)
+											$kraken = 1;
+									}
+								 ?>
+								<a class="btn btn-default btn-xs" <?php if($kraken == 1){?> disabled <?php }else{ ?> href="altAval.php?cod=<?php echo $user->codAvaliacao; ?>"  <?php }?> role="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
 							<!--		<a class="btn btn-default btn-xs"  href="dadosUsuario.php?cpf=<?php// echo $usuario->cpf; ?>" <!-- role="button" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Apagar</a>
 								</td>
 								-->

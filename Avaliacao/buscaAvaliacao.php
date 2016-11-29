@@ -23,7 +23,7 @@
 if($tipo == "professor"){
 	$cod=$_SESSION['cod'];	
 
-	$result = mysqli_query($con, "SELECT turma.*, avaliacao.*, disciplina.*, prova.* FROM turma LEFT JOIN avaliacao on turma.codTurma = avaliacao.codTurma LEFT JOIN disciplina on turma.codDisciplina = disciplina.codDisciplina LEFT JOIN prova ON avaliacao.codAvaliacao = prova.codAvaliacao WHERE turma.codProfessor = 5 GROUP BY avaliacao.codAvaliacao");
+	$result = mysqli_query($con, "SELECT turma.*, avaliacao.*, disciplina.*, prova.* FROM turma LEFT JOIN avaliacao on turma.codTurma = avaliacao.codTurma LEFT JOIN disciplina on turma.codDisciplina = disciplina.codDisciplina LEFT JOIN prova ON avaliacao.codAvaliacao = prova.codAvaliacao WHERE turma.codProfessor = '$cod' GROUP BY avaliacao.codAvaliacao");
 	//$temp = mysqli_fetch_object($result);
 	//$result = mysqli_query($con, "SELECT * FROM disciplina where codDisciplina = '$temp->codDisciplina'");
 
@@ -76,11 +76,16 @@ if($tipo == "professor"){
 							}
 						
 						?></table> <?php		
+					}else
+					{		
+					?>		
+						<p class="bg-info"><b> Nenhuma avaliação cadastrada!</b></p>				
+					<?php
 					}
 				}else
 					{		
 					?>		
-						<p class="bg-info"><b> Você não possui nenhuma disciplina cadastrada!</b></p>				
+						<p class="bg-info"><b> Nenhuma avaliação cadastrada!</b></p>				
 					<?php
 					}
 				?>

@@ -90,7 +90,7 @@ if($tipo == "funcionario"){
 							?>
 							
 							<div class="panel panel-primary">
-				  			<div class="panel-heading">Turmas</div>
+				  			<div class="panel-heading">Matrículas</div>
 							<table class="table table-striped">
 									<tr>
 										<td class="col-md-1"><b>Turma</b></td>
@@ -120,9 +120,8 @@ if($tipo == "funcionario"){
 									<?php 
 										$rez = mysqli_query($con, "SELECT * from matricula where codTurma = '$usuario->codTurma'");
 									?>
-									<a class="btn btn-default btn-xs" <?php if($cond = mysqli_fetch_object($rez)){?> disabled <?php }else{ ?> href="desativarMat.php?codT=<?php echo $dados->codTurma; ?>&codA=<?php echo $alun->codAluno ?>"  <?php }?>role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a>
 
-									<a class="btn btn-default btn-xs"  href="desativarMat.php?codT=<?php echo $dados->codTurma; ?>&codA=<?php echo $alun->codAluno ?>"  role="button" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a> 
+									<!-- <a class="btn btn-default btn-xs"  href="desativarMat.php?codT=<?php// echo $dados->codTurma; ?><!--&codA=<?php// echo $alun->codAluno ?> <!--"  role="button" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a> -->
 									</td>
 									
 								</tr>

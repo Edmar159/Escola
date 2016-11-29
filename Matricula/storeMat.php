@@ -5,6 +5,10 @@
 	$naodevia  = $_POST['turma']; // codigo da turma
 	$cod = $_POST['aluno']; // cod aluno
 
+	if(($naodevia == NULL) || ($cod == NULL)){
+			header("Location: cadMat.php?error=Campo obrigatório não preenchido !");
+			exit();
+	}
 	$result=mysqli_query($con,"SELECT * FROM matricula where codTurma='$naodevia' and codAluno = '$cod'");
 	if(isset($result)){
 		if(mysqli_num_rows($result)> 0){

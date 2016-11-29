@@ -58,7 +58,7 @@ $disciplina = mysqli_fetch_object($result);
 			}elseif($aux = 0)
 			{
 			?>		
-				<p class="bg-info"><b> Nenhum aluno matriculado!</b></p>				
+				<p class="bg-info"><b> Nenhuma turma encontrada!</b></p>				
 			<?php
 			}
 		}

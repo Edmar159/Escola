@@ -39,11 +39,17 @@ if( $_SESSION["tipo"] == "professor"){
 				while($usuario = mysqli_fetch_object($result))
 				{
 					$aux++;
+					$resul = mysqli_query($con, "SELECT codTurma FROM avaliacao where codAvaliacao = '$codA'");
+					$avaliacao_1 = mysqli_fetch_object($resul); 
+					$resul = mysqli_query($con, "SELECT codDisciplina FROM turma where codTurma = '$avaliacao_1->codTurma'");
+					$cod_disciplina = mysqli_fetch_object($resul);
+					$resul = mysqli_query($con, "SELECT * FROM disciplina where codDisciplina = '$cod_disciplina->codDisciplina'");
+					$disciplina_1 = mysqli_fetch_object($resul);
 					$resul = mysqli_query($con, "SELECT * FROM questao where codQuestao ='$usuario->codQuestao'");
 					$prova= mysqli_fetch_object($resul);
 
 					?>
-				<form class="form-horizontal" method="POST" action="updateAval.php" >
+			<form class="form-horizontal" method="POST" action="updateAval.php" >
 				<input type="hidden" class="form-control" name="qst" value="<?php echo $prova->codQuestao?>">
 				<input type="hidden" class="form-control" name="ava" value="<?php echo $codA?>">
 				<div class="panel panel-primary">
@@ -51,43 +57,30 @@ if( $_SESSION["tipo"] == "professor"){
 						<h3 class="panel-title">Questão <?php echo $aux?></h3>				
 					</div>
 					<div class="panel-body">
-							<div class="form-group">
-								<label class="col-md-3 control-label">Enunciado</label>
-								<div class="col-md-8">
-								<input type="text" class="form-control" name="enunciado" placeholder="<?php echo $prova->enunciado ?>">
-								</div>
+						<div class="row">
+						<div class="form-group ">
+						    <label class="col-md-2 control-label">Questão</label>
+						    <label class="col-md-1 control-label"><?php echo $prova->enunciado ?></label>
+							<div class="col-md-8">
+								<select class="form-control" name="<?php echo $aux ?>">
+								<?php
+									$result3 = mysqli_query($con, "SELECT * FROM questao where codDisciplina = '$disciplina_1->codDisciplina'");
+							 		while($turm = mysqli_fetch_object($result3)){
+							 		?>
+										<option value="<?php echo $turm->codQuestao?>"><?php echo $turm->enunciado ?></option>  
+									<?php
+									} ?>
+									</select>
 							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">Resposta Correta</label>
-								<div class="col-md-8">
-								<input type="text" class="form-control" name="respc" placeholder="<?php echo $prova->respCerta ?>">
-								</div>
+						</div>
 							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">Resposta 2</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" name="resp2" placeholder="<?php echo $prova->resp2 ?>">
-								</div>
+						<div class="form-group">
+			    			<div class="col-md-1 col-md-offset-9">
+								<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Atualizar</button>
 							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">Resposta 3</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" name="resp3" placeholder="<?php echo $prova->resp3 ?>">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">Resposta 4</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" name="resp4" placeholder="<?php echo $prova->resp4 ?>">
-								</div>
-							</div>
-							<div class="form-group">
-					    		<div class="col-md-1 col-md-offset-9">
-									<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Atualizar</button>
-								</div>
-							</div>
+						</div>
 					</div>
-					</div>
+				</div>
 
 			</form>
 				<?php
