@@ -57,7 +57,7 @@ if($tipo == "professor"){ ?>
 											$kraken = 1;
 									}
 								 ?>
-								<a class="btn btn-default btn-xs" <?php if($kraken == 1){?> disabled <?php }else{ ?> href="altAval.php?cod=<?php echo $user->codAvaliacao; ?>"  <?php }?> role="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
+								<a class="btn btn-default btn-xs" <?php if($kraken == 1){?> disabled <?php }else{ ?> href="altQuestao.php?cod=<?php echo $usuario->codQuestao; ?>"  <?php }?> role="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar</a>
 							<!--		<a class="btn btn-default btn-xs"  href="dadosUsuario.php?cpf=<?php// echo $usuario->cpf; ?>" <!-- role="button" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Apagar</a>
 								</td>
 								-->

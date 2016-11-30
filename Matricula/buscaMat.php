@@ -105,7 +105,8 @@ if($tipo == "funcionario"){
 							while($usuario = mysqli_fetch_object($result))
 							{
 								$res = mysqli_query($con, "SELECT * FROM turma where codTurma = '$usuario->codTurma' ");
-								$dados = mysqli_fetch_object($res);
+								if($dados = mysqli_fetch_object($res)){
+								
 								?>
 								<tr>
 									<td><span class="detalhes"><?php echo $dados->codTurma ?></a></span><br></td>
@@ -138,7 +139,7 @@ if($tipo == "funcionario"){
 									}			
 								}
 								
-								
+								}	
 							}
 						
 							?></table> <?php	
