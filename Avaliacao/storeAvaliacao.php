@@ -14,6 +14,7 @@
 		$codQ = $_POST[$qtques];
 		$result = mysqli_query($con, "SELECT * FROM prova where codAvaliacao ='$codA' and codQuestao ='$codQ'");
 		if($repetido = mysqli_fetch_object($result)){
+			mysqli_query($con, "DELETE from prova where codAvaliacao='$codA'");
 			header("Location: cadAvaliacao.php?error=Questões repetidas, tente novamente!");
 			exit();
 		}else{
